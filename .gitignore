@@ -1,2 +1,6 @@
 .sass-cache/
 *.css.map
+*.sass
+*.scss
+*.coffee
+*.scss.bak
