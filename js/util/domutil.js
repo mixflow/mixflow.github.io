@@ -88,13 +88,19 @@ function domUtil (selector, baseElement) {
     };
 
     function get(){
+
       return el; // return DOM element.
     };
 
     // the exposed properties and functions.
     return {
-      get, /*get the DOM element*/
-      hasClass, addClass, removeClass, replaceClass, toggleClass,
+      // the duplication is used for old browser capacity(IE11, old mobile browser).
+      // get: get,/*get the DOM element*/ hasClass, addClass, removeClass, replaceClass, toggleClass,
+      get: get,/*get the DOM element*/
+
+      hasClass: hasClass, addClass: addClass,
+      removeClass: removeClass,
+      replaceClass: replaceClass, toggleClass: toggleClass,
 
       // wrap the element with the wrapper.
       wrap: function(wrapper) {
@@ -273,7 +279,7 @@ var mixUtil = (function (){
   }; // [end] scrollToY
 
   return {
-    scrollToY
+    scrollToY: scrollToY
   }; // return public object
 })(); // call anonymous function which returns the util object
 
