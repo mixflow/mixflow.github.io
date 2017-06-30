@@ -14,10 +14,15 @@
         link: '/2017/02/17/UE4-work-book-room',
         detail: '点击查看个人作品，<br/>使用虚幻4引擎在虚拟中尝试构建现实'
       },
-      2: {
+      1: {
         title: 'Blender Cycles 渲染作品 「 甜面包圈 」',
         link: '/2017/04/01/blender-cycles-render-donuts',
         detail: '点击查看个人作品，<br/>使用Blender Cycles渲染如同照片真实的作品'
+      },
+      2: {
+        title: '神经网络算法转变图画的艺术风格',
+        link: '/2017/06/27/image-style-transfer-using-neural-style',
+        detail: '点击查看一系列作品，纯粹由算法生成的作品'
       }
     };
     changeMiddleInfo = (function(key_indices_to_infos) {
@@ -52,7 +57,8 @@
       is_show = false;
       time2key = {
         0: 1,
-        20: 2
+        12: 1,
+        24: 2
       };
       return function() {
         var gallery, images, ref, v, videoSource;
