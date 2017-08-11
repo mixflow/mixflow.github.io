@@ -4,6 +4,8 @@
   <head>
   <meta charset="utf-8">
   
+  
+
   <title>MixFlow 「混流」</title>
   <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1">
   <link rel="alternate" href="/atom.rss" title="MixFlow 「混流」" type="application/atom+xml">
@@ -23,7 +25,7 @@
       /*unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; */
     }
     </style>
-  <link rel="stylesheet" href="/css/main.css"><script src="/js/util/domutil.js"></script><script src="/js/main.js"></script>
+  <link rel="stylesheet" href="/css/main.css"><script src="/js/util/domutil.js"></script><script src="/js/util/blazy.min.js"></script><script src="/js/main.js"></script>
 </head>
 
   <body><h1>MixFlow CG</h1>
@@ -37,6 +39,8 @@
     <ul>
       
       <li><a href="/">首页</a></li>
+      
+      <li><a href="/work">作品</a></li>
       
       <li><a href="/blog">博客</a></li>
       
@@ -74,13 +78,13 @@
 <span class="article-author" itemprop="author">混流</span>
 
 
-  <span>发表于</span>
-  <time datetime="2017-02-20T05:38:05.000Z" itemprop="datePublished">
+  <span class="publish-label">发表于</span>
+  <time class="publish-time" datetime="2017-02-20T05:38:05.000Z" itemprop="datePublished">
     2017-02-20
   </time>
-  <span>最后修改于</span>
-  <time datatime="2017-04-01T07:05:17.068Z" itemprop="dateModified">
-    2017-04-01
+  <span class="modified-label">最后修改于</span>
+  <time class="modified-time" datatime="2017-08-10T13:25:02.331Z" itemprop="dateModified">
+    2017-08-10
   </time>
 
 
@@ -107,6 +111,8 @@
 <ol style="list-style-type: decimal">
 <li>当时正好也在学Ruby，所以就用Ruby实现下，纯练手。</li>
 <li>这个是第二个编译器实现。最早第一个是当时学习Racket的时候，使用Racket本身实现的，编写了一个<code>metacirclar evaluator</code>，这种方式可以跳过<code>parse</code>步骤（详见紧接着的下文），因为写的代码就已经是AST了（依旧详见下文）。那么用Ruby来实现Racket的话，是需要<code>parser</code>，所以也能再多练一些(虽说parser也没什么复杂的)。</li>
+<li>《黑客与画家》中 <em>“如果回到1975年，你声称它(Ruby)是一种有着自己语法的Lisp方言，没有人会提出反对意见。”</em>。<br>
+作者认为Ruby也可以视为Lisp的一种方言。那么我反过来通过Lisp的方言来实现Lisp，想法有些古怪，但我认为有点意思。</li>
 </ol>
 <h2 id="实现一个编程语言通常的步骤">实现一个编程语言通常的步骤</h2>
 <p>下面涉及的是一个典型的语言实现<code>language implemention</code>的流程：</p>
@@ -145,6 +151,7 @@
 <p>一开始就比较不同寻常，对于此类Racket代码可以看作<code>操作符 operator</code>以及<code>操作数 operand</code>的组合，再用括号包裹。比如<code>(+ 1 1)</code>就可以把<code>+</code>看作操作符。另外可以括号形式的代码嵌套，比如上述先乘后加的代数运算。</p>
 <p>这种代码形式，实际非常简单，我们可以给一个更加明确的定义如下节。</p>
 <h3 id="racket所有的东西都是">Racket所有的东西都是：</h3>
+<p>就两种！</p>
 <ol style="list-style-type: decimal">
 <li>一个<code>atom</code>，比如数字<code>3</code>、字符串<code>&quot;hello&quot;</code>、<code>#t</code>、<code>#f</code>、<code>null</code>。也包括一种atom的：<code>识别符 identifier</code>,可以是<code>变量variable</code>,<br>
 或者是<code>特别形式special form</code>诸如<code>define</code>、<code>lambda</code>、<code>if</code>。(涉及的名词或者术语，不理解没关系，再后文会一一介绍)</li>
@@ -206,20 +213,18 @@ racket里面除了可以使用圆括号()，也可以使用方括号[]，两者�
 <h3 id="atom">Atom</h3>
 <figure class="highlight ruby"><figcaption><span>s-expression atom</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">atom</span><span class="params">(token)</span></span></div><div class="line">    str_part = token[<span class="regexp">/^"(.*)"$/</span>, <span class="number">1</span>] <span class="comment"># try match string(start and end with ")</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> str_part.<span class="literal">nil</span>?</div><div class="line">        str_part</div><div class="line">    <span class="keyword">elsif</span> token[<span class="regexp">/(?=(\.|[eE]))(\.\d+)?([eE][+-]?\d+)?$/</span>]  <span class="comment"># decimal</span></div><div class="line">        token.to_f</div><div class="line">    <span class="keyword">elsif</span> token[<span class="regexp">/^\d+$/</span>] <span class="comment"># integer</span></div><div class="line">        token.to_i</div><div class="line">    <span class="keyword">else</span> <span class="comment"># symbol</span></div><div class="line">        token.to_sym</div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>刚才上文我们已经处理了s-expression序列，即<a href="#racket所有的东西都是">上文提及s-expression</a>第二种情形。此处<code>atom</code>为第一种情况，具体又有细分，可能是string、数字、也有可能是<code>identifier</code>。对应代码中<code>if</code>语句各个分支，通过正则式尝试匹配<code>token</code>（Ruby string对象）：</p>
-<ul>
+<ol style="list-style-type: decimal">
 <li>在Racket中头尾各一个双引号<code>&quot;</code>来包含字符串。第一个if便是通过正则式匹配首尾“，如果的确是string，其中间部分取出就是对应的Ruby string类型的对象。</li>
-<li>第二个if分支判断是否为浮点数。这里的正则式看起来很复杂，简单代替方案是仅仅匹配小数点（正则式为 <code>/\.\d+$/</code>）。这里复杂的正则式是除了用来匹配小数外，还能匹配指数<em>exponential</em>，Ruby中指数类似1e5也算作浮点数(等同于10000.0，Racket中也是同样的)。to_f便是将string转化为float浮点数的方法。这里举出4个数<code>.003</code> <code>0.5</code> <code>32e3</code> <code>.24e5</code>，这些都是浮点数，我们的正则式便是能够匹配出对应小数点部分以及指数部分，测试代码如下，第一行这四个数尝试使用该正则式匹配，第二行是匹配部分的结果: <figure class="highlight ruby"><figcaption><span>decimal and exponential</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="string">'.003'</span>, <span class="string">'0.5'</span>, <span class="string">'32e3'</span>, <span class="string">'.24e5'</span>].map&#123;<span class="params">|num|</span> num[<span class="regexp">/(?=(\.|[eE]))(\.\d+)?([eE][+-]?\d+)?$/</span>] &#125;</div><div class="line"><span class="comment"># =&gt; [".003", ".5", "e3", ".24e5"]</span></div></pre></td></tr></table></figure></li>
-</ul>
+<li><p>第二个if分支判断是否为浮点数。这里的正则式看起来很复杂，简单代替方案是仅仅匹配小数点（正则式为 <code>/\.\d+$/</code>）。这里复杂的正则式是除了用来匹配小数外，还能匹配指数<em>exponential</em>，Ruby中指数类似1e5也算作浮点数(等同于10000.0，Racket中也是同样的)。to_f便是将string转化为float浮点数的方法。这里举出4个数<code>.003</code> <code>0.5</code> <code>32e3</code> <code>.24e5</code>，这些都是浮点数，我们的正则式便是能够匹配出对应小数点部分以及指数部分，测试代码如下，第一行这四个数尝试使用该正则式匹配，第二行是匹配部分的结果: <figure class="highlight ruby"><figcaption><span>decimal and exponential</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="string">'.003'</span>, <span class="string">'0.5'</span>, <span class="string">'32e3'</span>, <span class="string">'.24e5'</span>].map&#123;<span class="params">|num|</span> num[<span class="regexp">/(?=(\.|[eE]))(\.\d+)?([eE][+-]?\d+)?$/</span>] &#125;</div><div class="line"><span class="comment"># =&gt; [".003", ".5", "e3", ".24e5"]</span></div></pre></td></tr></table></figure></p>
 <blockquote>
 <p>Ruby Array的map方法，是将其中每个元素都进行block中处理。 <code>{ |num| ...}</code>形式就是block，此处Array.map会往block的num参数 传入单个元素。</p>
-</blockquote>
-<ul>
+</blockquote></li>
 <li>第三个if分支，尝试匹配是否为整数。to_i便把string是转化整数<em>integer</em>的方法</li>
-<li>最后一个else分支，剩下情况可能是变量名或者special form比如<code>lambda</code> <code>define</code>等。最后转化为Ruby <code>符号Symbol</code>类型。所谓symbol类似string，symbol为不可变<code>immutable</code>，而且其值一样的话，就是同一个对象。</li>
-</ul>
+<li><p>最后一个else分支，剩下情况可能是变量名或者special form比如<code>lambda</code> <code>define</code>等。最后转化为Ruby <code>符号Symbol</code>类型。所谓symbol类似string，symbol为不可变<code>immutable</code>，而且其值一样的话，就是同一个对象。</p>
 <blockquote>
 <p>Ruby中symbol是以<code>:</code>作为开头，例如<code>:hello</code>。两两比对的时候symbol效率更高。不像string一个一个字符<em>char</em>进行比对，symbol直接比对两者在内存中是否为同一个对象。</p>
-</blockquote>
+</blockquote></li>
+</ol>
 <p>到此为止，实现了生成AST的部分，下面就要涉及interpreter部分了。</p>
 <h2 id="eval方法实现executorinterpreter">eval方法实现executor(interpreter)</h2>
 <p>有些表达式<em>expression</em>中会包含变量<em>variable</em>，求值<em>evaluate</em>这些表达式就需要<code>environment</code>，通过variable获得对应值<em>vaLue</em>。</p>
@@ -252,7 +257,8 @@ Ruby<strong>不需要提前声明variable</strong>，赋值一个之前不存在
 <p><code>operator.call *operands</code>中<code>oprands</code>是array，其前面<code>*</code>是<code>splat operator</code>。作用是将数组拆开，每个元素对应到单个参数。反过来，在函数参数声明时候也可以使用<code>*</code>，作用也是相反的，将传入的单个参数值组成array。</p>
 </blockquote>
 <p>另外，多了处理symbol atom的步骤，一般symbol为variable的时候，就需要到environment查找对应的value，即<code>lookup_env</code>方法。该方法很简单，就是通过variable作为key查找environment对应的值，没有variable的话就抛出一个简单错误提示该variable没被定义。</p>
-<p>如果完整代数运算，除法和减法<code>:/</code>，<code>:-</code>可以类似上面写法。但是重复劳动了，用程序来做重复的事。另外还有一点需要改进，Racket中代数运算符，可以接受多个数字，进行累积运算。 <figure class="highlight ruby"><figcaption><span>updated algebra</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ALGEBRA_OPERATORS = [<span class="symbol">:+</span>, <span class="symbol">:-</span>, <span class="symbol">:*</span>, <span class="symbol">:/</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">()</span></span></div><div class="line">    @env = &#123;</div><div class="line">    &#125;</div><div class="line">    ALGEBRA_OPERATORS.map <span class="keyword">do</span> <span class="params">|opt|</span></div><div class="line">        @env[opt] = lambda&#123; <span class="params">|*operands|</span> operands.inject(opt) &#125;</div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>如果完整代数运算，除法和减法<code>:/</code>，<code>:-</code>可以类似上面写法。但是重复劳动了，用程序来做重复的事。另外还有一点需要改进，Racket中代数运算符，可以接受多个数字，进行累积运算。<br>
+例如<code>(+ 1 4 5 7)</code>执行结果为<code>17</code>，<code>(* 2 3 4)</code>执行结果为<code>24</code>。 <figure class="highlight ruby"><figcaption><span>updated algebra</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ALGEBRA_OPERATORS = [<span class="symbol">:+</span>, <span class="symbol">:-</span>, <span class="symbol">:*</span>, <span class="symbol">:/</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">()</span></span></div><div class="line">    @env = &#123;</div><div class="line">    &#125;</div><div class="line">    ALGEBRA_OPERATORS.map <span class="keyword">do</span> <span class="params">|opt|</span></div><div class="line">        @env[opt] = lambda&#123; <span class="params">|*operands|</span> operands.inject(opt) &#125;</div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
 <p>改写成上述代码，通过程序往environment增加每个代数运算符对应的lambda函数。看到这似乎炫技嫌疑，但实际后面也有相同的思想的实现，比较大小的comparison operator也是类似的（也是能接受多个参数）</p>
 <p>至此<code>eval</code>的大致结构功能如此。后文涉及的新的Racket feature，就是往<code>eval</code>增加更多情况的处理，方式可能是增加条件分支，也有可能是往environment中增加函数（可以看作Racket自带的函数）。</p>
 <h3 id="工具repl-read-eval-print-loop">工具REPL, Read-Eval-Print-Loop</h3>
@@ -264,11 +270,12 @@ Ruby<strong>不需要提前声明variable</strong>，赋值一个之前不存在
 <p>放置于处理function call分支之前即可。</p>
 <h3 id="条件判断if语句">条件判断、if语句</h3>
 <p>Racket中用<code>#t</code>和<code>#f</code>表示true和false。</p>
-<p>Racket if的语法：<code>(if &lt;test-exp&gt; &lt;then-exp&gt; &lt;else-exp&gt;)</code>当<test-exp>执行结果不是<code>#f</code>的时候，执行<then-exp>分支，否则执行<else-exp>分支 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@env = &#123;</div><div class="line">    <span class="symbol">:<span class="string">'#t'</span></span> =&gt; <span class="literal">true</span>,</div><div class="line">    <span class="symbol">:<span class="string">'#f'</span></span> =&gt; <span class="literal">false</span></div><div class="line">&#125;</div><div class="line"><span class="comment"># ...</span></div><div class="line"><span class="keyword">elsif</span> exp[<span class="number">0</span>] == <span class="symbol">:if</span></div><div class="line">    <span class="number">_</span>, test_exp, then_exp, else_exp = exp</div><div class="line">    <span class="keyword">if</span> eval(test_exp, env) == <span class="literal">false</span></div><div class="line">        eval( else_exp, env )</div><div class="line">    <span class="keyword">else</span> <span class="comment"># other than false(#f)</span></div><div class="line">        eval( then_exp, env)</div><div class="line">    <span class="keyword">end</span></div></pre></td></tr></table></figure></else-exp></then-exp></test-exp></p>
+<p>Racket if的语法：<code>(if &lt;test-exp&gt; &lt;then-exp&gt; &lt;else-exp&gt;)</code>当<test-exp>执行结果不是<code>#f</code>的时候，执行<code>&lt;then-exp&gt;</code>分支，否则执行<code>&lt;else-exp&gt;</code>分支 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@env = &#123;</div><div class="line">    <span class="symbol">:<span class="string">'#t'</span></span> =&gt; <span class="literal">true</span>,</div><div class="line">    <span class="symbol">:<span class="string">'#f'</span></span> =&gt; <span class="literal">false</span></div><div class="line">&#125;</div><div class="line"><span class="comment"># ...</span></div><div class="line"><span class="keyword">elsif</span> exp[<span class="number">0</span>] == <span class="symbol">:if</span></div><div class="line">    <span class="number">_</span>, test_exp, then_exp, else_exp = exp</div><div class="line">    <span class="keyword">if</span> eval(test_exp, env) == <span class="literal">false</span></div><div class="line">        eval( else_exp, env )</div><div class="line">    <span class="keyword">else</span> <span class="comment"># other than false(#f)</span></div><div class="line">        eval( then_exp, env)</div><div class="line">    <span class="keyword">end</span></div></pre></td></tr></table></figure></test-exp></p>
 <p>ruby注释使用<code>#</code>，如果symbol含有#的话，需要用引号括起来。这里会把Racket的<code>#t #f</code>转化为Ruby中的true和false。</p>
 <h3 id="比较操作comparison-operators">比较操作comparison operators</h3>
 <p>至于比较操作，上文提过了类似代数操作实现。 当有多个需要比较的对象时，比较操作需要两两比较，所有两两比较结果为true，则返回true，否则false。 <code>each_cons(n)</code>就是(Ruby提供方法来遍历连续<em>consecutive</em>的n个元素)。<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> <figure class="highlight ruby"><figcaption><span>comparision</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">COMPARISION = [<span class="symbol">:==</span>, <span class="symbol">:</span>!=, <span class="symbol">:&lt;</span>, <span class="symbol">:&gt;</span>, <span class="symbol">:&lt;=</span>, <span class="symbol">:&gt;=</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">()</span></span></div><div class="line">    <span class="comment"># ...</span></div><div class="line">    COMPARISION.map <span class="keyword">do</span> <span class="params">|opt|</span></div><div class="line">        @env[opt] = lambda&#123; <span class="params">|*args|</span> args.each_cons(<span class="number">2</span>).all? &#123;<span class="params">|x, y|</span> x.method(opt).call(y)&#125; &#125;</div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p>Ruby和其他大部分语言，使用<code>=</code>代表赋值操作，所以比较是否相等时候使用<code>==</code>。但是Racket有专门的<code>define</code>操作，所以依旧使用<code>=</code>代表比较是否相等的函数，上述实现使用Ruby语法，如果要改为Scheme Racket语法也很简单，不做赘述了。</p>
+<p>Ruby和其他大部分语言，使用<code>=</code>代表赋值操作，所以比较是否相等时候使用<code>==</code>。但是Racket有专门的<code>define</code>操作，所以依旧使用<code>=</code>代表比较是否相等的函数。<br>
+我追求简单，所以实现套用Ruby语法。如果要改为Scheme Racket语法也很简单，多做一次符号映射即可，其他不做赘述了。</p>
 <h3 id="cons-cell-and-list">Cons Cell and List</h3>
 <p><code>cons</code>操作用来构建一个pair，其通过<code>car</code>获得pair的第一个数据，通过<code>cdr</code>获得pair的第二个数据，pair有专门的术语：<code>cons cell</code>。</p>
 <p>另外Racket有个特许且常用的<code>cons cell</code>形式：<code>list</code>，例如<code>(cons 1 (cons 2 (cons 3 (cons 4 null))))</code>代码，nested cons cells，最后一个（最内部的pair）的第二数据以<code>null</code>为结尾。<br>
@@ -319,7 +326,7 @@ Ruby<strong>不需要提前声明variable</strong>，赋值一个之前不存在
 <figure class="highlight ruby"><figcaption><span>cons cells</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">:null?</span> =&gt; lambda &#123; <span class="params">|exp|</span> <span class="symbol">:null</span> == exp &#125;, <span class="comment"># racket empty list.</span></div><div class="line"><span class="symbol">:cons</span> =&gt; lambda &#123; <span class="params">|x, cell|</span> [x, cell] &#125;,</div><div class="line"><span class="symbol">:car</span> =&gt; lambda &#123; <span class="params">|cell|</span> cell[<span class="number">0</span>]&#125;,</div><div class="line"><span class="symbol">:cdr</span> =&gt; lambda &#123; <span class="params">|cell|</span> cell[<span class="number">1</span>] &#125;,</div><div class="line"><span class="symbol">:list</span> =&gt; lambda <span class="keyword">do</span> <span class="params">|*args|</span></div><div class="line">    <span class="comment"># racket code '(list 1 2 3)' is equivalent to '(cons 1 (cons 2 (cons 3 null)))'</span></div><div class="line">    racket_list_helper= lambda <span class="keyword">do</span> <span class="params">|args|</span></div><div class="line">        <span class="keyword">if</span> args.empty? <span class="keyword">then</span> <span class="symbol">:null</span></div><div class="line">        <span class="keyword">else</span> [args[<span class="number">0</span>], racket_list_helper.call(args[<span class="number">1</span>..-<span class="number">1</span>])]</div><div class="line">        <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">    racket_list_helper.call(args)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <!-- TODO: map, filter, fold -->
 <h3 id="functionslambda-and-apply">Functions，Lambda and Apply</h3>
-<blockquote class="pullquote"> <!-- TODO: pullquote style -->
+<blockquote class="pullquote has-quotes"> <!-- TODO: pullquote style -->
 问题弄清楚后，答案自然就清楚了。</blockquote>
 <p>到了我觉得最重要的function部分了。目标实现function，只需要搞清楚何为function就知道如何实现，首先先要明确一些相关的概念。</p>
 <p>Racket的函数遵循<code>lexical scope</code>又称作<code>static scope</code>，函数的正文部分求值时，所用的environment在该函数被定义时候的enviroment。相对立的<code>dynamic scope</code>，就是函数求值时，使用的函数被调用的enviroment。</p>
@@ -368,7 +375,7 @@ Ruby<strong>不需要提前声明variable</strong>，赋值一个之前不存在
 </ul></li>
 </ul>
 <p>要想了解interpreter如何工作，最好办法就是自己实现一个了，这就是我实现RacketOnRuby以及写本文的目的。 如果需要更深入了解，推荐上文提及SICP以及另外一本书TSPL<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>，都是有免费阅读的电子版。或者自行搜索，有相当多的资料。</p>
-<p>另外文章最开始提及的<黑客与画家>，非编程技术书，也推荐阅读。语言通俗易懂，不涉及技术细节，阅读不费力，非程序员也能读。但其中作者的思想条理清晰，观点深入透彻。另外本书也不光全是关于Lisp，还有一些有趣事情，我印象较深的就是最开始的章节“为什么书呆子不受欢迎”。</黑客与画家></p>
+<p>另外文章最开始提及的《黑客与画家》，非编程技术书，也推荐阅读。语言通俗易懂，不涉及技术细节，阅读不费力，非程序员也能读。但其中作者的思想条理清晰，观点深入透彻。另外本书也不光全是关于Lisp，还有一些有趣事情，我印象较深的就是最开始的章节“为什么书呆子不受欢迎”。</p>
 <!-- toc -->
 <div class="footnotes">
 <hr>
@@ -439,7 +446,7 @@ Ruby<strong>不需要提前声明variable</strong>，赋值一个之前不存在
     <p>©2017 MixFlow</p>
     <p>
         Theme by MixFlow |
-        Power by <a href="https://hexo.io">hexo</a>
+        Power by <a href="https://hexo.io">Hexo</a>
     </p>
 </footer>
 

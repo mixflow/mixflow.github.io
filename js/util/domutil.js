@@ -106,7 +106,7 @@ function domUtil (selector, baseElement) {
       wrap: function(wrapper) {
         var wrapperElement;
         if (wrapper.get){
-          wrapperElement = wrapper.get;
+          wrapperElement = wrapper.get();
         }else{
           // DOM element
           wrapperElement = wrapper;
@@ -115,6 +115,15 @@ function domUtil (selector, baseElement) {
         var originalParent = el.parentNode;
         originalParent.replaceChild(wrapperElement, el); // replace original element with the wrapper.
         wrapperElement.appendChild(el); // make original element the child of wrapper.
+      },
+
+      // get attribute
+      getAttribute: function(attr){
+          /*
+            wrap the DOM element 'getAttribute' method.
+            @param attr: the attribute name (string)
+          */
+          return el.getAttribute(attr)
       },
 
       // set multi attributes.

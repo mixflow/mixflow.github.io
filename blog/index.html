@@ -4,6 +4,8 @@
   <head>
   <meta charset="utf-8">
   
+  
+
   <title>MixFlow 「混流」</title>
   <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1">
   <link rel="alternate" href="/atom.rss" title="MixFlow 「混流」" type="application/atom+xml">
@@ -23,7 +25,7 @@
       /*unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; */
     }
     </style>
-  <link rel="stylesheet" href="/css/main.css"><script src="/js/util/domutil.js"></script><script src="/js/main.js"></script>
+  <link rel="stylesheet" href="/css/main.css"><script src="/js/util/domutil.js"></script><script src="/js/util/blazy.min.js"></script><script src="/js/main.js"></script>
 </head>
 
   <body><h1>MixFlow CG</h1>
@@ -37,6 +39,8 @@
     <ul>
       
       <li><a href="/">首页</a></li>
+      
+      <li><a href="/work">作品</a></li>
       
       <li><a href="/blog">博客</a></li>
       
@@ -55,7 +59,8 @@
 
     
       <div class="page-center">
-    <div >
+    <div class="main">
+
 
   
     
@@ -76,13 +81,13 @@
 <span class="article-author" itemprop="author">混流</span>
 
 
-  <span>发表于</span>
-  <time datetime="2017-06-27T12:57:26.000Z" itemprop="datePublished">
+  <span class="publish-label">发表于</span>
+  <time class="publish-time" datetime="2017-06-27T12:57:26.000Z" itemprop="datePublished">
     2017-06-27
   </time>
-  <span>最后修改于</span>
-  <time datatime="2017-06-30T14:10:35.210Z" itemprop="dateModified">
-    2017-06-30
+  <span class="modified-label">最后修改于</span>
+  <time class="modified-time" datatime="2017-08-11T03:29:52.169Z" itemprop="dateModified">
+    2017-08-11
   </time>
 
 
@@ -92,14 +97,11 @@
   </header>
 
   <section class="article-body" itemprop="articleBody">
-    <p>Neural style是一种<code>convolution neural network卷积神经网路</code>算法。一个非常有意思的算法， 能够将一幅图转化为另一幅图的艺术风格。例如可以将照片转化为名画风格:</p>
+    <p>Neural style是一种<code>convolution neural network卷积神经网路</code>算法。一个非常有意思的算法， 能够将一幅图转化为另一幅图的风格。例如可以将照片转化为名画的艺术风格:</p>
 <div class="figure">
-<img src="/images/2017-neural-style/output/forest_wave.jpg" alt="浮世绘风格作品" />
+<img src="" alt="浮世绘风格作品" class="b-lazy" data-src="/images/2017-neural-style/output/forest_wave.jpg" style="max-height:620px;" />
 <p class="caption">浮世绘风格作品</p>
 </div>
-<p>该作品就是将一张森林的照片（下一图）转化的，所使用艺术风格画作是「神奈川沖浪裏」（下二图）。</p>
-<img src="/images/2017-neural-style/content/forest.jpg" width="200">
-<img src="/images/2017-neural-style/style/wave.jpg" width="420">
 
       
         <p><a class="article-excerpt-link" title="Read more 阅读全文" href="/2017/06/27/image-style-transfer-using-neural-style/#more">
@@ -114,7 +116,7 @@
 
     
   <div class="article-tag">
-    <label class="article-tag-label" for="">标签: </label><ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/art/">art</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/convolution-neural-network/">convolution neural network</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learing/">machine learing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nerual-network/">nerual network</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/neural-style/">neural style</a></li></ul>
+    <label class="article-tag-label" for="">标签: </label><ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CG/">CG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/art/">art</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/convolution-neural-network/">convolution neural network</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learing/">machine learing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nerual-network/">nerual network</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/neural-style/">neural style</a></li></ul>
   </div>
 
 
@@ -142,13 +144,13 @@
 <span class="article-author" itemprop="author">混流</span>
 
 
-  <span>发表于</span>
-  <time datetime="2017-04-01T10:27:54.000Z" itemprop="datePublished">
+  <span class="publish-label">发表于</span>
+  <time class="publish-time" datetime="2017-04-01T10:27:54.000Z" itemprop="datePublished">
     2017-04-01
   </time>
-  <span>最后修改于</span>
-  <time datatime="2017-04-01T11:46:33.357Z" itemprop="dateModified">
-    2017-04-01
+  <span class="modified-label">最后修改于</span>
+  <time class="modified-time" datatime="2017-08-10T13:25:02.314Z" itemprop="dateModified">
+    2017-08-10
   </time>
 
 
@@ -166,7 +168,7 @@
 <p>最初做完并没有下图的水准。直到最近发现了一个针对blender cycles的改进，就拿这个当年练手作品试验了下，质量大幅度提升。（之后可能会写篇文章介绍）</p>
 <p>个人非常满意现在的效果：</p>
 <div class="figure">
-<img src="/images/2017-Donuts/result1.jpg" alt="主视角" />
+<img src="" alt="主视角" class="b-lazy" data-src="/images/2017-Donuts/result1.jpg" />
 <p class="caption">主视角</p>
 </div>
 
@@ -211,13 +213,13 @@
 <span class="article-author" itemprop="author">混流</span>
 
 
-  <span>发表于</span>
-  <time datetime="2017-02-20T05:38:05.000Z" itemprop="datePublished">
+  <span class="publish-label">发表于</span>
+  <time class="publish-time" datetime="2017-02-20T05:38:05.000Z" itemprop="datePublished">
     2017-02-20
   </time>
-  <span>最后修改于</span>
-  <time datatime="2017-04-01T07:05:17.068Z" itemprop="dateModified">
-    2017-04-01
+  <span class="modified-label">最后修改于</span>
+  <time class="modified-time" datatime="2017-08-10T13:25:02.331Z" itemprop="dateModified">
+    2017-08-10
   </time>
 
 
@@ -276,12 +278,12 @@
 <span class="article-author" itemprop="author">混流</span>
 
 
-  <span>发表于</span>
-  <time datetime="2017-02-17T09:53:21.000Z" itemprop="datePublished">
+  <span class="publish-label">发表于</span>
+  <time class="publish-time" datetime="2017-02-17T09:53:21.000Z" itemprop="datePublished">
     2017-02-17
   </time>
-  <span>最后修改于</span>
-  <time datatime="2017-02-18T10:00:00.000Z" itemprop="dateModified">
+  <span class="modified-label">最后修改于</span>
+  <time class="modified-time" datatime="2017-02-18T10:00:00.000Z" itemprop="dateModified">
     2017-02-18
   </time>
 
@@ -328,14 +330,15 @@
   
 
 
-</div>
+
+</div> <!-- end main div -->
 
 
     <footer>
     <p>©2017 MixFlow</p>
     <p>
         Theme by MixFlow |
-        Power by <a href="https://hexo.io">hexo</a>
+        Power by <a href="https://hexo.io">Hexo</a>
     </p>
 </footer>
 

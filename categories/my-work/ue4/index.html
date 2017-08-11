@@ -4,6 +4,8 @@
   <head>
   <meta charset="utf-8">
   
+  
+
   <title>MixFlow 「混流」</title>
   <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1">
   <link rel="alternate" href="/atom.rss" title="MixFlow 「混流」" type="application/atom+xml">
@@ -23,7 +25,7 @@
       /*unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; */
     }
     </style>
-  <link rel="stylesheet" href="/css/main.css"><script src="/js/util/domutil.js"></script><script src="/js/main.js"></script>
+  <link rel="stylesheet" href="/css/main.css"><script src="/js/util/domutil.js"></script><script src="/js/util/blazy.min.js"></script><script src="/js/main.js"></script>
 </head>
 
   <body><h1>MixFlow CG</h1>
@@ -37,6 +39,8 @@
     <ul>
       
       <li><a href="/">首页</a></li>
+      
+      <li><a href="/work">作品</a></li>
       
       <li><a href="/blog">博客</a></li>
       
@@ -55,7 +59,8 @@
 
     
       <div class="page-center">
-    <div >
+    <div class="main">
+
 
 
   
@@ -66,26 +71,27 @@
       
       
       <section class="archives-wrap">
-        <div class="archive-year-wrap">
+        <h1 class="archive-year-wrap">
           <a href="/archive/2017" class="archive-year">2017</a>
-        </div>
+        </h1>
         <div class="archives">
 
     
     
     <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
     <header class="archive-article-header">
-  <span>发表于</span>
-  <time datetime="2017-02-17T09:53:21.000Z" itemprop="datePublished">
-    2月 17
+        <div class="archive-article-meta">
+  <span class="publish-label">发表于</span>
+  <time class="publish-time" datetime="2017-02-17T09:53:21.000Z" itemprop="datePublished">
+    02-17
   </time>
-  <span>最后修改于</span>
-  <time datatime="2017-02-18T10:00:00.000Z" itemprop="dateModified">
-    2月 18
+  <span class="modified-label">最后修改于</span>
+  <time class="modified-time" datatime="2017-02-18T10:00:00.000Z" itemprop="dateModified">
+    02-18
   </time>
 
 
+        </div>
   
     <a class="archive-article-title-link" href="/2017/02/17/UE4-work-book-room/">
       <h1 class="archive-article-title" itemprop="headline">UE4作品 简易书房</h1>
@@ -94,7 +100,6 @@
 
 
     </header>
-  </div>
 </article>
 
   
@@ -103,14 +108,15 @@
 
 
 
-</div>
+
+</div> <!-- end main div -->
 
 
     <footer>
     <p>©2017 MixFlow</p>
     <p>
         Theme by MixFlow |
-        Power by <a href="https://hexo.io">hexo</a>
+        Power by <a href="https://hexo.io">Hexo</a>
     </p>
 </footer>
 
