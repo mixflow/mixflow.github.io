@@ -461,13 +461,13 @@ body > .page-center > footer {
   .cards-wrap {
     margin-left: 94px; } }
 section#comments {
-  margin: 1.5em 1em; }
+  margin: 1.5em 0; }
 
 @media all and (min-width: 720px) {
   section#comments {
-    margin: 1.5em auto;
+    margin: 1.5em 0;
     max-width: 800px; } }
-.article .article-body .figure .caption, figure.image-figure figcaption {
+.figure .caption, figure.image-figure figcaption {
   margin-top: 0;
   font-size: 0.85em;
   color: #7d838b; }
@@ -569,11 +569,6 @@ section#comments {
       .article .article-body blockquote.pullquote.has-quotes:before, .article .article-body blockquote.pullquote.has-quotes:after {
         content: '"';
         color: #7d838b; }
-    .article .article-body .figure {
-      text-align: center;
-      margin: 0 -1.2em; }
-      .article .article-body .figure img {
-        max-width: 100%; }
     .article .article-body .footnoteRef {
       text-decoration: none; }
       .article .article-body .footnoteRef sup:before {
@@ -624,6 +619,17 @@ section#comments {
       .article #article-nav .article-nav-link.next {
         float: right; }
 
+.figure {
+  text-align: center;
+  margin: 0 -1.2em; }
+  .figure img {
+    max-width: 100%; }
+  .figure .caption {
+    margin-top: 4px;
+    margin-bottom: 1.6em; }
+  .figure > p {
+    margin-top: 0 !important; }
+
 figure.image-figure {
   max-width: 100%;
   display: flex;
@@ -633,6 +639,24 @@ figure.image-figure {
     max-height: 280px; }
   figure.image-figure.too-width img {
     max-height: 225px; }
+
+details.article-table-of-contents {
+  margin: 1.5em auto; }
+  details.article-table-of-contents summary {
+    margin-bottom: 0.5em;
+    padding: 1em 0;
+    text-align: center;
+    font-size: 1.2em;
+    border: 1px dashed #c1c1c1;
+    width: 100%; }
+  details.article-table-of-contents ol {
+    margin-left: 1em; }
+    details.article-table-of-contents ol li {
+      margin-bottom: 0.4em; }
+  details.article-table-of-contents > ol {
+    margin-left: 0;
+    padding: 0.4em 0;
+    border: 1px dashed #c1c1c1; }
 
 @media all and (min-width: 720px) {
   .article {
@@ -649,6 +673,28 @@ figure.image-figure {
 @media all and (min-width: 1020px) {
   .article .figure {
     margin: 0 -2.4em; } }
+@supports (grid-area: auto) {
+  @media all and (min-width: 1020px) {
+    article:not(.index-page):not(.archive-article) {
+      display: grid;
+      max-width: none;
+      grid-template-columns: 1fr minmax(760px, 800px) 1fr;
+      grid-template-areas: "l-space header toc" "l-space main toc" "l-space footer r-space-2" "l-space comments r-space-2"; }
+      article:not(.index-page):not(.archive-article) .article-header {
+        grid-area: header; }
+      article:not(.index-page):not(.archive-article) .article-body {
+        grid-area: main; }
+      article:not(.index-page):not(.archive-article) .article-table-of-contents {
+        grid-area: toc; }
+      article:not(.index-page):not(.archive-article) .article-footer {
+        grid-area: footer; }
+      article:not(.index-page):not(.archive-article) #comments {
+        grid-area: comments; }
+
+    article:not(.index-page).no-limit {
+      grid-template-areas: "l-space header r-space" "no-limit no-limit no-limit" "l-space2 main toc" "l-space2 footer r-space-2" "l-space2 comments r-space-2"; }
+      article:not(.index-page).no-limit .article-no-limit-header {
+        grid-area: no-limit; } } }
 .article-body pre, .article-body .highlight {
   background: #2d2d2d;
   margin: 0 -1.2em;

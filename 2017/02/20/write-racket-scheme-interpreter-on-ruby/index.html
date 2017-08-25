@@ -6,7 +6,7 @@
   
   
 
-  <title>MixFlow 「混流」</title>
+  <title>使用Ruby写一个Racket(Scheme)解释器 | MixFlow 「混流」</title>
   <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1">
   <link rel="alternate" href="/atom.rss" title="MixFlow 「混流」" type="application/atom+xml">
   <link rel="icon" href="/favicon.png">
@@ -26,6 +26,8 @@
     }
     </style>
   <link rel="stylesheet" href="/css/main.css"><script src="/js/util/domutil.js"></script><script src="/js/util/blazy.min.js"></script><script src="/js/main.js"></script>
+
+  <script src="/js/util/three.min.js"></script><script src="/js/util/3panorama.min.js"></script>
 </head>
 
   <body><h1>MixFlow CG</h1>
@@ -60,9 +62,9 @@
     
       <div class="page-center">
     
-<div class="page-center">
+
 <article id="post-write-racket-scheme-interpreter-on-ruby"
-  class="article layout-post"
+  class="article layout-post  "
   itemscope itemtype="https://schema.org/BlogPosting">
 
   <header class="article-header">
@@ -92,6 +94,17 @@
 
     </div>
   </header>
+
+  
+
+  
+    
+      
+        <details class="article-table-of-contents" >
+            <summary>目录</summary>
+            <ol class="article-contents"><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#语言相关介绍"><span class="article-contents-number">1.</span> <span class="article-contents-text">语言相关介绍</span></a><ol class="article-contents-child"><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#lisp-scheme-racket-是什么"><span class="article-contents-number">1.1.</span> <span class="article-contents-text">Lisp Scheme Racket 是什么?</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#why-use-ruby"><span class="article-contents-number">1.2.</span> <span class="article-contents-text">Why use Ruby?</span></a></li></ol></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#实现一个编程语言通常的步骤"><span class="article-contents-number">2.</span> <span class="article-contents-text">实现一个编程语言通常的步骤</span></a></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#racket基本语法以及parser实现"><span class="article-contents-number">3.</span> <span class="article-contents-text">Racket基本语法以及parser实现</span></a><ol class="article-contents-child"><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#代数运算"><span class="article-contents-number">3.1.</span> <span class="article-contents-text">代数运算</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#racket所有的东西都是"><span class="article-contents-number">3.2.</span> <span class="article-contents-text">Racket所有的东西都是：</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#token"><span class="article-contents-number">3.3.</span> <span class="article-contents-text">Token</span></a></li></ol></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#abstract-syntax-tree-parse-tree"><span class="article-contents-number">4.</span> <span class="article-contents-text">Abstract Syntax Tree (Parse Tree)</span></a><ol class="article-contents-child"><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#atom"><span class="article-contents-number">4.1.</span> <span class="article-contents-text">Atom</span></a></li></ol></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#eval方法实现executorinterpreter"><span class="article-contents-number">5.</span> <span class="article-contents-text">eval方法实现executor(interpreter)</span></a><ol class="article-contents-child"><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#完成代数运算eval"><span class="article-contents-number">5.1.</span> <span class="article-contents-text">完成代数运算eval</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#function-call以及variables-in-environment"><span class="article-contents-number">5.2.</span> <span class="article-contents-text">Function call以及Variables in environment</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#工具repl-read-eval-print-loop"><span class="article-contents-number">5.3.</span> <span class="article-contents-text">工具REPL, Read-Eval-Print-Loop</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#定义变量variable"><span class="article-contents-number">5.4.</span> <span class="article-contents-text">定义变量variable</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#条件判断if语句"><span class="article-contents-number">5.5.</span> <span class="article-contents-text">条件判断、if语句</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#比较操作comparison-operators"><span class="article-contents-number">5.6.</span> <span class="article-contents-text">比较操作comparison operators</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#cons-cell-and-list"><span class="article-contents-number">5.7.</span> <span class="article-contents-text">Cons Cell and List</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#functionslambda-and-apply"><span class="article-contents-number">5.8.</span> <span class="article-contents-text">Functions，Lambda and Apply</span></a></li></ol></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#racketonruby总结"><span class="article-contents-number">6.</span> <span class="article-contents-text">RacketOnRuby总结</span></a></li></ol></details>
+    
+  
 
   <section class="article-body" itemprop="articleBody">
     <img src="/images/symbol/lambda.svg" class="center" width="200" title="lambda symbol">
@@ -390,12 +403,11 @@ Ruby<strong>不需要提前声明variable</strong>，赋值一个之前不存在
     
   </section>
 
-  <footer class="article-footer">
-    
-      <div class="article-contents-wrap"><ol class="article-contents"><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#语言相关介绍"><span class="article-contents-number">1.</span> <span class="article-contents-text">语言相关介绍</span></a><ol class="article-contents-child"><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#lisp-scheme-racket-是什么"><span class="article-contents-number">1.1.</span> <span class="article-contents-text">Lisp Scheme Racket 是什么?</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#why-use-ruby"><span class="article-contents-number">1.2.</span> <span class="article-contents-text">Why use Ruby?</span></a></li></ol></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#实现一个编程语言通常的步骤"><span class="article-contents-number">2.</span> <span class="article-contents-text">实现一个编程语言通常的步骤</span></a></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#racket基本语法以及parser实现"><span class="article-contents-number">3.</span> <span class="article-contents-text">Racket基本语法以及parser实现</span></a><ol class="article-contents-child"><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#代数运算"><span class="article-contents-number">3.1.</span> <span class="article-contents-text">代数运算</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#racket所有的东西都是"><span class="article-contents-number">3.2.</span> <span class="article-contents-text">Racket所有的东西都是：</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#token"><span class="article-contents-number">3.3.</span> <span class="article-contents-text">Token</span></a></li></ol></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#abstract-syntax-tree-parse-tree"><span class="article-contents-number">4.</span> <span class="article-contents-text">Abstract Syntax Tree (Parse Tree)</span></a><ol class="article-contents-child"><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#atom"><span class="article-contents-number">4.1.</span> <span class="article-contents-text">Atom</span></a></li></ol></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#eval方法实现executorinterpreter"><span class="article-contents-number">5.</span> <span class="article-contents-text">eval方法实现executor(interpreter)</span></a><ol class="article-contents-child"><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#完成代数运算eval"><span class="article-contents-number">5.1.</span> <span class="article-contents-text">完成代数运算eval</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#function-call以及variables-in-environment"><span class="article-contents-number">5.2.</span> <span class="article-contents-text">Function call以及Variables in environment</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#工具repl-read-eval-print-loop"><span class="article-contents-number">5.3.</span> <span class="article-contents-text">工具REPL, Read-Eval-Print-Loop</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#定义变量variable"><span class="article-contents-number">5.4.</span> <span class="article-contents-text">定义变量variable</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#条件判断if语句"><span class="article-contents-number">5.5.</span> <span class="article-contents-text">条件判断、if语句</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#比较操作comparison-operators"><span class="article-contents-number">5.6.</span> <span class="article-contents-text">比较操作comparison operators</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#cons-cell-and-list"><span class="article-contents-number">5.7.</span> <span class="article-contents-text">Cons Cell and List</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#functionslambda-and-apply"><span class="article-contents-number">5.8.</span> <span class="article-contents-text">Functions，Lambda and Apply</span></a></li></ol></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#racketonruby总结"><span class="article-contents-number">6.</span> <span class="article-contents-text">RacketOnRuby总结</span></a></li></ol></div>
-    
 
-    <div class="creative-commons">
+  <footer class="article-footer">
+
+    
+        <hr class="article-hr"/><div class="creative-commons">
     <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
         <img alt="知识共享许可协议" style="border-width:0"
             src="/images/creative-commons/BY-NC-ND.png" />
@@ -407,6 +419,7 @@ Ruby<strong>不需要提前声明variable</strong>，赋值一个之前不存在
     </a>进行许可。
 </div>
 
+        <hr class="article-hr"/>
     
   <div class="article-tag">
     <label class="article-tag-label" for="">标签: </label><ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eval/">eval</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interpreter/">interpreter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lambda/">lambda</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lisp/">lisp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/racket/">racket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scheme/">scheme</a></li></ul>
@@ -438,35 +451,33 @@ Ruby<strong>不需要提前声明variable</strong>，赋值一个之前不存在
     
   </footer>
 
+
+
+  <section id="comments">
+      <div id="disqus_thread"></div>
+      <script>
+
+          /**
+          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+          var disqus_config = function () {
+              this.page.url = "https://www.mix-flow.com/2017/02/20/write-racket-scheme-interpreter-on-ruby/";  // Replace PAGE_URL with your page's canonical URL variable
+              this.page.identifier = "post-write-racket-scheme-interpreter-on-ruby"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://mixflow.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+
 </article>
 
-
-
-<section id="comments">
-    <div id="disqus_thread"></div>
-    <script>
-
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-
-    var disqus_config = function () {
-    this.page.url = "https://www.mix-flow.com/2017/02/20/write-racket-scheme-interpreter-on-ruby/";  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = "post-write-racket-scheme-interpreter-on-ruby"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-
-    (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://mixflow.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</section>
-
-
-</div>
 
     <footer>
     <p>©2017 MixFlow</p>
