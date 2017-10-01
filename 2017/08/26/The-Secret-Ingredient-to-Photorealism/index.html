@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <meta charset="utf-8">
+  
+  
+
+  <title>MixFlow「混流」| A programmer and CG artist's personal website</title>
+  <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1">
+  <link rel="alternate" href="/atom.xml" title="MixFlow「混流」| A programmer and CG artist's personal website" type="application/atom+xml">
+  <link rel="icon" href="/favicon.png">
+
+  
+    <style>
+    /* google font for the code. */
+    @font-face {
+      font-family: 'Source Code Pro';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Source Code Pro'),
+           local('Source-Code-Pro-regular'),
+           url('/fonts/SourceCodePro-Regular.woff') format('woff'),
+           url('/fonts/SourceCodePro-Regular.ttf') format('truetype');
+      /*unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; */
+    }
+    </style>
+  <link rel="stylesheet" href="/css/main.css"><script src="/js/util/domutil.js"></script><script src="/js/util/blazy.min.js"></script><script src="/js/main.js"></script>
+
+  <script src="/js/util/three.min.js"></script><script src="/js/util/3panorama.min.js"></script>
+</head>
+
+  <body><h1>MixFlow CG</h1>
+<header>
+  <a href="/">
+    <img class="logo" src="/images/text-logo-h.png" alt="logo image">
+  </a>
+  
+  <nav id="main-nav-menu">
+    <h1 class="hide">Site Navigator</h1>
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/work">作品</a></li>
+      
+      <li><a href="/blog">博客</a></li>
+      
+      <li class="only-small">
+        <a id="force-desktop" href="javascript:void('Force desktop resolution')">
+          大屏幕版「桌面版」
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="main-nav-switch" class="menu-icon-wrapper">
+    <div class="css-icon menu"></div>
+  </div>
+</header>
+
+    
+      <div class="page-center">
+    
+
+<article id="post-The-Secret-Ingredient-to-Photorealism"
+  class="article layout-post  "
+  itemscope itemtype="https://schema.org/BlogPosting">
+
+  <header class="article-header">
+  
+    <h1 class="article-title" itemprop="headline">
+      照片级写实的秘诀 The Secret Ingredient to Photorealism
+    </h1>
+  
+
+
+
+    <div class="article-meta" >
+<span class="article-author" itemprop="author">混流</span>
+
+
+  <span class="publish-label">发表于</span>
+  <time class="publish-time" datetime="2017-08-26T13:33:47.000Z" itemprop="datePublished">
+    2017-08-26
+  </time>
+  <span class="modified-label">最后修改于</span>
+  <time class="modified-time" datatime="2017-10-01T11:37:52.148Z" itemprop="dateModified">
+    2017-10-01
+  </time>
+
+
+      
+
+    </div>
+  </header>
+
+  
+
+  
+    
+      
+        <details class="article-table-of-contents" >
+            <summary>目录</summary>
+            <ol class="article-contents"><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#what-is-dynamic-range"><span class="article-contents-number">1.</span> <span class="article-contents-text">What is Dynamic Range</span></a></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#dynamic-range-如何影响渲染结果"><span class="article-contents-number">2.</span> <span class="article-contents-text">Dynamic Range 如何影响渲染结果</span></a></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#blender-dynamic-range-有限的原因"><span class="article-contents-number">3.</span> <span class="article-contents-text">Blender Dynamic Range 有限的原因</span></a></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#解决方式-filimic-blender"><span class="article-contents-number">4.</span> <span class="article-contents-text">解决方式 Filimic Blender</span></a><ol class="article-contents-child"><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#安装-filmic-blender"><span class="article-contents-number">4.1.</span> <span class="article-contents-text">安装 Filmic Blender</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#使用-filmic-blender"><span class="article-contents-number">4.2.</span> <span class="article-contents-text">使用 Filmic Blender</span></a></li><li class="article-contents-item article-contents-level-3"><a class="article-contents-link" href="#使用-false-color-让场景的曝光度明确可见"><span class="article-contents-number">4.3.</span> <span class="article-contents-text">使用 False Color 让场景的曝光度明确可见</span></a></li></ol></li><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#总结"><span class="article-contents-number">5.</span> <span class="article-contents-text">总结</span></a></li></ol></details>
+    
+  
+
+  <section class="article-body" itemprop="articleBody">
+    <p>我曾经在我的文章 <a href="/2017/04/01/blender-cycles-render-donuts/" title="Blender Cycles渲染作品 面包圈">Blender Cycles渲染作品 面包圈</a> 提到发现一个改进方法，能够大幅提高渲染 <em>render</em> 效果。</p>
+<p>本文我会通过上面提及的面包圈作品作为实例，来谈论原生blender <code>dynamic range 动态范围</code>的限制。 以及突破限制的方式，即<code>Filmic Blender</code>插件，最终能带来不可思议的照片级渲染效果。</p>
+<div class="figure">
+<img src="/images/2017-BlenderFilmic/filmic-before&amp;after.jpg" alt="渲染效果对比 右边改进的作品 提升效果明显">
+<p class="caption">渲染效果对比 右边改进的作品 提升效果明显</p>
+</div>
+<p>这个改进方法我是从blenderguru的一个非常棒的<a href="https://youtu.be/m9AT7H4GGrA" target="_blank" rel="external">教程视频 The Secret Ingredient to Photorealism</a>学到的。 如果英语还行并且能上U2B，我极力推荐观看。我文章基本就是根据视频整理得出，额外加些我的内容。</p>
+<p>另外本文基于blender编写，但是里面相当多的内容并不局限于blender，甚至<code>Filmic</code>的幕后实现也是基于其他领域的成果（下面正文<!-- TODO link to the section-->我会介绍）。 所以如果你使用其他CG或者渲染软件，以及别的相关领域也建议了解下。 <a id="more"></a> 比如虚幻4 UE4游戏引擎在4.15版本的时候也有类似的新特性 <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>。</p>
+<h2 id="what-is-dynamic-range">What is Dynamic Range</h2>
+<p>首先从拍照来引入，相机（或手机）取景会显得过亮或者过暗，我们经常会选取图像的某一处作为“曝光点”， 然后镜头会以我们选择的“曝光点”作为 中间灰度值 <em>middle grey</em> 自动调节。</p>
+<p>在一些光照复杂的情况，比如烈日户外，我需要拍摄一个阴影处的物体，我们选择暗处作为曝光点， 可能外部天空背景就会显得过亮。当我选择天空作为曝光点，暗处又会显得很暗，甚至一团黑完全看不到东西。</p>
+<p>这两种纠结的情况会发生，就是因为相机曝光范围有限制，这个限制范围就是 <code>dynamic range 动态范围</code> 。</p>
+<div class="figure">
+<img src="" alt="Dynamic Range. 图片来源blenderguru.com" class="b-lazy" data-src="/images/2017-BlenderFilmic/dynamic-range.png">
+<p class="caption">Dynamic Range. 图片来源blenderguru.com</p>
+</div>
+<p>超出 <code>dynamic range</code> 的部分被称为 <code>clipping</code> ，过暗以至于完全黑色的被称作 <code>black clipping</code> ， 相反的过亮完全变白的的被称作 <code>white clipping</code> 。</p>
+<div class="figure">
+<img src="" alt="Clipping 下图红色部分即 white clipping 部分(高光)， 另外图中黑色冲压（图中间的柱体）也有 black clipping 的部分 图片来源 wikipedia" class="b-lazy" data-src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Blown-out_highlights.jpg">
+<p class="caption"><strong><code>Clipping</code></strong> 下图红色部分即 <code>white clipping</code> 部分(高光)， 另外图中黑色冲压（图中间的柱体）也有 <code>black clipping</code> 的部分 图片来源 <a href="https://en.wikipedia.org/wiki/Clipping_(photography)" target="_blank" rel="external">wikipedia</a></p>
+</div>
+<p><code>clipping</code> 的部分是超出了感光器材的 <code>dynamic range</code> 产生，但并不是所有情况都是缺陷。有些情况下， 有些地方就因该是高光，比如光滑金属的反光的部分；或者完全的暗部，现实光照就是不足以照亮的角落 。但有时不能接受， 比如我的面包圈之前的效果，其中一处在偏左白色盘子存在 <code>white clipping</code> 问题， 以至无法看出盘子中间是凹的（对比右图）。</p>
+<p>笼统说 <code>dynamic range</code> 越宽，效果越好。衡量其范围的单位为 <code>f-stops</code>:</p>
+<div class="figure">
+<img src="" alt="不同的成像设备以及人眼的f-stops。 图片来源blenderguru.com" class="b-lazy" data-src="/images/2017-BlenderFilmic/f-stops.png">
+<p class="caption">不同的成像设备以及人眼的f-stops。 图片来源blenderguru.com</p>
+</div>
+<p>上述图中，最好的是人眼，达到了 <code>20 f-stops</code>。最差的便携相机都有 <code>10 f-stops</code>。 而blender，仅有 <code>8 f-stops</code>，甚至连最差的便携相机都不如。</p>
+<h2 id="dynamic-range-如何影响渲染结果">Dynamic Range 如何影响渲染结果</h2>
+<p>前文一直借用摄像领域的介绍，现在回到blender，谈谈 <code>dynamic range</code> 如何影响渲染的结果。</p>
+<div class="figure">
+<img src="" alt="左边盘子已经出现 white clipping 但是整个场景很多依旧感觉很暗" class="b-lazy" data-src="/images/2017-BlenderFilmic/sRGB_camera_0.png">
+<p class="caption">左边盘子已经出现 <code>white clipping</code> 但是整个场景很多依旧感觉很暗</p>
+</div>
+<p>在左边盘子以及桌面出现大量的 <code>white clipping</code> 的时候， 光源不能继续提高亮度了，但是场景有的部分依旧感觉很暗，比如右边 巧克力面包圈下面的阴影。</p>
+<blockquote>
+<p>blenderguru的教程，其使用的例子也是类似的情况，而且其光照条件更为苛刻。 是在一个基本封闭的室内，只有一扇窗户有采光，当透过这扇窗的直射光找到 其室内的桌子并出现 <code>white clipping</code> 的时候，整个房间别处依旧很暗。 而这间房子，即作者的房间，作者提供一张现实的照片，现实里并不会如此暗， 整个房间还是很明亮的。</p>
+</blockquote>
+<p>这时，有些人会采取一些“作弊”方式来解决，比如添加额外的光源来模拟增强反射光<code>bounce lighting</code>， 或者增强 <code>sky light</code> 来增加室内光线。</p>
+<p>但仔细想想 <strong>这种做法没有意义！</strong> 我们现实世界并不需要“作弊”。</p>
+<p>Blender存在这些问题是由于狭窄的 <code>dynamic range</code> 限制:</p>
+<ul>
+<li>场景过暗，是由于光源的反射光不足。</li>
+<li>光源的反射光不足，是由于光源亮度不够。</li>
+<li>光源的亮度不够，是由于光源已经很刺眼了。</li>
+<li>光源完全刺眼，是由于 <code>dynamic range</code> 太窄只有 <code>8 f-stops</code>。</li>
+</ul>
+<p>如果我们能够提高 <code>dynamic range</code>，我们就可以提高光源亮度，这样反射光就会增强， 最终我们就能得到完美的光照效果，而不需要额外的工作量。</p>
+<h2 id="blender-dynamic-range-有限的原因">Blender Dynamic Range 有限的原因</h2>
+<p>幸运的是blender的<code>渲染器 renderer</code> 并不存在缺陷，别的 <code>renderer</code> 也有可能出现该问题。 真正问题根源是原生blender使用的 <code>色彩管理配置 Color Management Configuration</code>。</p>
+<p><code>renderer</code> 和相机，存储图像数据都是数字格式，当将数字数据显示为图像的时候，是 需要经过转化处理的，就是 <code>色彩转化 color transform</code>。</p>
+<p><strong>问题的根源</strong> 是blender使用了 <strong><code>sRGB</code></strong> color transform。<code>sRGB</code> 是设计来模拟 CRT显示器 的显示效果。 而这本意不是用来渲染的，永远不应该拿来渲染。</p>
+<h2 id="解决方式-filimic-blender">解决方式 Filimic Blender</h2>
+<p>我们只需要将原生的blender的<code>sRGB</code> 改为名为 <code>Filmic Blender</code> 的 <code>color management</code>。</p>
+<p><a href="https://sobotka.github.io/filmic-blender/" target="_blank" rel="external">Filmic Blender</a>是由 Troy Sobotka 编写一套 color management。类似于ACES<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> 。<code>Filmic Blender</code> 能够将 <code>8 f-stops</code> 提升至 <code>25 f-stops</code>。</p>
+<div class="figure">
+<img src="" alt="Filmic Blender的dynamic range爆表" class="b-lazy" data-src="/images/2017-BlenderFilmic/new-f-stops.png">
+<p class="caption">Filmic Blender的dynamic range爆表</p>
+</div>
+<p>最重要的是Troy非常慷慨将 <code>Filmic Blender</code> 对community开源，并且完全免费。</p>
+<h3 id="安装-filmic-blender">安装 Filmic Blender</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://github.com/sobotka/filmic-blender" target="_blank" rel="external">Github项目页面</a>找到 <em>Clone or Download</em> 按钮， 点击后选择 <em>Download Zip</em> 下载zip压缩包。</li>
+<li>解压到blender <strong>datafiles</strong> 目录下。
+<ul>
+<li>Windows用户，这个目录处于blender安装目录下，可能是 C:/Program Files/Blender Foundation/Blender/&lt;version&gt;/datafiles</li>
+<li>Linux用户，/home/$user/.blender/&lt;version&gt;/datafiles。其中 <em>$user</em> 及用户名。</li>
+<li>Mac用户，进入Resources文件夹后，blender.app/Contents/Resources/&lt;version&gt;/datafiles</li>
+</ul></li>
+<li>将 <strong>datafiles</strong> 目录下原来的 <strong>colormanagement</strong> 改为别的名字（例如 colormanagement_bak）作为备份。</li>
+<li>将改解压的文件夹改为 <strong>colormanagement</strong> 作为新的颜色管理配置。 注意打开后能看到 <em>looks</em> 以及 <em>luts</em> 这两个文件夹，确保目录结构正确。</li>
+<li><p>打开blender，进入 <strong>Scene</strong> 标签，在 <strong>Color Management</strong> 下点开 <strong>View</strong> 应该能看到如下图的选项。 其中 <code>Filmic Log Encoding Base</code> 就是我们的主角了。</p>
+<div class="figure">
+<img src="" alt="Filmic Blender Color Management 菜单" class="b-lazy" data-src="/images/2017-BlenderFilmic/menu-filmic.png">
+<p class="caption">Filmic Blender Color Management 菜单</p>
+</div></li>
+</ol>
+<h3 id="使用-filmic-blender">使用 Filmic Blender</h3>
+<ul>
+<li><code>color management</code>下面的 <code>view</code> 选为 <code>Filmic Log Encoding Base</code> 。</li>
+<li><p>将 <code>look</code> 选为 <code>Base Contrast</code> 。</p>
+<blockquote>
+<p>没有选择 <code>None</code> 时候，类似于相片Raw格式，<code>look</code> 中的选项相当于应用一个 lookup table。</p>
+</blockquote></li>
+<li><p>在高动态范围下，你可以将场景里面的光源亮度提高，让你的场景拥有足够的光线。</p></li>
+</ul>
+<h3 id="使用-false-color-让场景的曝光度明确可见">使用 False Color 让场景的曝光度明确可见</h3>
+<p>以往调整光源的时候往往就是肉眼观察，然后不断尝试感觉差不多了。 但现在Filmic Blender有一个量化工具来辅助， 当 <code>look</code> 设为 <code>False Color</code>，就能够将场景内曝光度可视化，可以根据其来调整光源强度。</p>
+<p>该设置下，会用不同颜色表示不同的曝光度:</p>
+<table style="width:62%;">
+<colgroup>
+<col width="20%">
+<col width="41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Value</th>
+<th align="left">Color</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Low Clip</td>
+<td align="left">Black</td>
+</tr>
+<tr class="even">
+<td align="left">-10 EV</td>
+<td align="left">Purple</td>
+</tr>
+<tr class="odd">
+<td align="left">-7 EV</td>
+<td align="left">Blue</td>
+</tr>
+<tr class="even">
+<td align="left">-4 EV</td>
+<td align="left">Cyan</td>
+</tr>
+<tr class="odd">
+<td align="left">-2 EV</td>
+<td align="left">Green</td>
+</tr>
+<tr class="even">
+<td align="left">0 EV</td>
+<td align="left">Grey</td>
+</tr>
+<tr class="odd">
+<td align="left">+2 EV</td>
+<td align="left">Green</td>
+</tr>
+<tr class="even">
+<td align="left">+4 EV</td>
+<td align="left">Yellow</td>
+</tr>
+<tr class="odd">
+<td align="left">+5.5 EV</td>
+<td align="left">Red</td>
+</tr>
+<tr class="even">
+<td align="left">High Clip</td>
+<td align="left">White</td>
+</tr>
+</tbody>
+</table>
+<p>白色就是 <code>white cliping</code>，黄色以及红色较亮，黑色就是 <code>black cliping</code>，蓝色以及紫色较暗。</p>
+<div class="figure">
+<img src="" alt="原来的光照" class="b-lazy" data-src="/images/2017-BlenderFilmic/FalseColor-light-before.jpg">
+<p class="caption">原来的光照</p>
+</div>
+<p>这个是改进前的场景，打不都是绿色，而且曝光最高的部分才黄色级别，所以光线严重不足。</p>
+<div class="figure">
+<img src="" alt="增强亮度后的光照" class="b-lazy" data-src="/images/2017-BlenderFilmic/FalseColor-light38&amp;10.jpg">
+<p class="caption">增强亮度后的光照</p>
+</div>
+<p>改进后，盘子有些反光，然后面包圈上的酱料有少许高光。</p>
+<p>最后再将 <code>look</code> 改回 <code>Base Constract</code>，查看下改进后的渲染效果：</p>
+<div class="figure">
+<img src="" alt="改进后的渲染效果" class="b-lazy" data-src="/images/2017-BlenderFilmic/light38&amp;10_1.jpg">
+<p class="caption">改进后的渲染效果</p>
+</div>
+<p>原先光源数据：主光源15，辅光源5。改进后光源数据：主光源38，辅光源10。 亮度提升了一倍多，场景内光线充足后，我们的渲染效果就闪耀了。</p>
+<h2 id="总结">总结</h2>
+<p>Blender 的 Cycles 渲染器效果非凡，我们通过修正了其color management，最后补足最后缺陷。 使其 PBR<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> 效果的以正确显示，最终达到照片级的真实效果。</p>
+<p>视频大概3月份发布，我也差不多一个月后发现并观看了，并用我的面包圈作品练手。 本来当时做完渲染作品，就想写这篇文章来推荐这个我极大受益的方法， 但拖了4个月，眼看blender 2.8版本就要正式版了，2.8内置类似<code>Filmic</code>的功能，再不写有些内容就快过时了。</p>
+<p>虽说即将到来的新版本已经意识到并解决老blender的这个问题，但这篇文章或者上述的教程视频依旧有用， 因为会介绍原理层面（很容易理解），知其所以然。</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p><a href="https://www.unrealengine.com/en-US/blog/unreal-engine-4-15-released?lang=en-US" target="_blank" rel="external">4.15发布日志</a> 新的基于<code>ACES</code>的<code>Filmic Tonemapping</code>特性以及对应的新的<code>Post Progress</code>后期处理的工具， 如果你用过以前版本，4.15的Post Progress有很大变化，而且相关工作流<code>workflow</code>有些不同，UE4团队有相关新特性的U2B视频教程 <a href="https://youtu.be/A-wectYNfRQ" target="_blank" rel="external">Filmic Tonemapper | Feature Highlight</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Academy Color Encoding System 是在电影以及电视领域用于管理色彩的工业标准。 此处 Academy 也是奥斯卡奖的那个学院。更多关于ACES介绍浏览 <a href="http://www.oscars.org/science-technology/sci-tech-projects/aces" class="uri" target="_blank" rel="external">http://www.oscars.org/science-technology/sci-tech-projects/aces</a><a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>Physically Based Rendering 基于物理现实的渲染<a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+
+    
+  </section>
+
+
+  <footer class="article-footer">
+
+    
+        <hr class="article-hr"/><div class="creative-commons">
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+        <img alt="知识共享许可协议" style="border-width:0"
+            src="/images/creative-commons/BY-NC-ND.png" />
+    </a>
+    
+    <br />本作品采用
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+        知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议
+    </a>进行许可。
+</div>
+
+        <hr class="article-hr"/>
+    
+  <div class="article-tag">
+    <label class="article-tag-label" for="">标签: </label><ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACES/">ACES</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CG/">CG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PBR/">PBR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blender/">blender</a></li></ul>
+  </div>
+
+
+    
+  <hr class="article-hr"/>
+  <nav id="article-nav">
+    
+    
+      <a class="article-nav-link next" href="/2017/08/24/JavaScript-class-free-OOP/">
+        <span class="article-nav-caption">后一篇: </span>
+        
+          JavaScript无类型(class free)面向对象编程
+        
+      </a>
+    
+  </nav>
+
+
+    
+  </footer>
+
+
+
+  <section id="comments">
+      <div id="disqus_thread"></div>
+      <script>
+
+          /**
+          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+          var disqus_config = function () {
+              this.page.url = "http://www.mix-flow.com/2017/08/26/The-Secret-Ingredient-to-Photorealism/";  // Replace PAGE_URL with your page's canonical URL variable
+              this.page.identifier = "post-The-Secret-Ingredient-to-Photorealism"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://mixflow.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+
+</article>
+
+
+    <footer>
+    <p>©2017 MixFlow</p>
+    <p>
+        Theme by MixFlow |
+        Power by <a href="https://hexo.io">Hexo</a>
+    </p>
+</footer>
+
+      </div>
+    
+  </body>
+</html>

@@ -6,9 +6,9 @@
   
   
 
-  <title>MixFlow 「混流」</title>
+  <title>MixFlow「混流」| A programmer and CG artist's personal website</title>
   <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1">
-  <link rel="alternate" href="/atom.rss" title="MixFlow 「混流」" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="MixFlow「混流」| A programmer and CG artist's personal website" type="application/atom+xml">
   <link rel="icon" href="/favicon.png">
 
   
@@ -85,8 +85,8 @@
     2017-08-24
   </time>
   <span class="modified-label">最后修改于</span>
-  <time class="modified-time" datatime="2017-09-11T11:27:39.278Z" itemprop="dateModified">
-    2017-09-11
+  <time class="modified-time" datatime="2017-09-18T13:14:57.732Z" itemprop="dateModified">
+    2017-09-18
   </time>
 
 
@@ -110,11 +110,11 @@
     <p>本文介绍无类别面向对象<code>class-free OOP</code>的编程方式，通过编写函数化构造器来创建对象， 该方式相对比传统<code>伪类 pesudoclassical</code>的方式(使用<code>new</code>调用构造器函数)，更为简单易懂，并且有许多优势。</p>
 <p>这个方法，我是从 <em>Douglas Crockfont</em> 那儿得知的。Douglas是一名JavaScript专家， 写有 <em>JavaScript: The Good Parts</em> ， 中译本名为 <em>JavaScript语言精粹</em>。</p>
 <p>一本非常好的书，实际上我的这篇文章中很多观点以及示例就是来自该书，以及该函数化构造器书中也有详尽介绍。</p>
+<a id="more"></a>
 <h2 id="伪类有什么问题">伪类有什么问题</h2>
 <p>那么伪类是什么 以及 伪类有什么不足的地方？</p>
 <p>首先从起源说起，早期创造JavaScript时，<code>原型 prototype</code>参考了Lua这门语言的原型系统。 偏离当今编程语言的主流风格，当今大多数语言都是<code>基于类 class-based</code>的语言。 尽管原型继承有其自己的表现力（对象可以直接从其他对象继承属性，无类型），但它并未被广泛理解。<br>
 另外，JavaScript提供了一套类似 基于类语言的对象构建方法。 有类型化语言编程经验的程序员很少有愿意接受原型，并认为借鉴类型化的语言模糊了JavaScript真实的原型本质，结果两边都不讨好。</p>
-<a id="more"></a>
 <p>这种语法类似类型化语言，但本质还是原型，我们在JavaScript中称其为<code>伪类 pesudoclassical</code>，一般类似代码如下： <figure class="highlight javascript"><figcaption><span>JavaScript constructor invocation</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创造名为Que的构造器函数，并带有一个 status 属性。</span></div><div class="line"><span class="keyword">var</span> Que = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.status = str;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 通过prototype来给Que所有实例增加一个 get_status 的公共方法。</span></div><div class="line">Que.prototype.get_status = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.status;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 创建一个Que实例。</span></div><div class="line"><span class="keyword">var</span> myQue = <span class="keyword">new</span> Que(<span class="string">"confused"</span>);</div><div class="line"></div><div class="line"><span class="built_in">document</span>.writeln( myQue.get_status() ); <span class="comment">// 打印输出结果 "confused"。</span></div></pre></td></tr></table></figure></p>
 <p>函数如果其目的就是要配合<code>new</code>来一起使用，这种函数一般称作<code>构造器函数</code>。 使用构造器函数来构造对象，这几乎是JavaScript程序员的常用方法，比如大部分JavaScript Libraries，但普遍并<strong>不代表完美</strong>。</p>
 <h3 id="没有加new会有问题">没有加new，会有问题</h3>
@@ -223,13 +223,20 @@
 
     
   <div class="article-tag">
-    <label class="article-tag-label" for="">标签: </label><ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OOP/">OOP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/functional/">functional</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming-language/">programming language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prototype/">prototype</a></li></ul>
+    <label class="article-tag-label" for="">标签: </label><ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OOP/">OOP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/functional/">functional</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming-language/">programming language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prototype/">prototype</a></li></ul>
   </div>
 
 
     
   <hr class="article-hr"/>
   <nav id="article-nav">
+    
+      <a class="article-nav-link prev" href="/2017/08/26/The-Secret-Ingredient-to-Photorealism/">
+        <span class="article-nav-caption">前一篇: </span>
+        
+          照片级写实的秘诀 The Secret Ingredient to Photorealism
+        
+      </a>
     
     
       <a class="article-nav-link next" href="/2017/08/22/UE4-work-forest-path-with-panorama/">

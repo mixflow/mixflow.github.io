@@ -533,7 +533,7 @@ section#comments {
     .article .article-body ol, .article .article-body ul {
       padding-left: 1.4em; }
       .article .article-body ol > li, .article .article-body ul > li {
-        margin-bottom: 0.8em; }
+        margin-bottom: 0.6em; }
     .article .article-body ol {
       list-style-type: decimal; }
     .article .article-body ul {
