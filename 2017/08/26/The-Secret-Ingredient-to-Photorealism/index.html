@@ -85,7 +85,7 @@
     2017-08-26
   </time>
   <span class="modified-label">最后修改于</span>
-  <time class="modified-time" datatime="2017-10-01T11:37:52.148Z" itemprop="dateModified">
+  <time class="modified-time" datatime="2017-10-01T11:37:52.149Z" itemprop="dateModified">
     2017-10-01
   </time>
 
@@ -113,7 +113,7 @@
 <img src="/images/2017-BlenderFilmic/filmic-before&amp;after.jpg" alt="渲染效果对比 右边改进的作品 提升效果明显">
 <p class="caption">渲染效果对比 右边改进的作品 提升效果明显</p>
 </div>
-<p>这个改进方法我是从blenderguru的一个非常棒的<a href="https://youtu.be/m9AT7H4GGrA" target="_blank" rel="external">教程视频 The Secret Ingredient to Photorealism</a>学到的。 如果英语还行并且能上U2B，我极力推荐观看。我文章基本就是根据视频整理得出，额外加些我的内容。</p>
+<p>这个改进方法我是从blenderguru的一个非常棒的<a href="https://youtu.be/m9AT7H4GGrA" target="_blank" rel="noopener">教程视频 The Secret Ingredient to Photorealism</a>学到的。 如果英语还行并且能上U2B，我极力推荐观看。我文章基本就是根据视频整理得出，额外加些我的内容。</p>
 <p>另外本文基于blender编写，但是里面相当多的内容并不局限于blender，甚至<code>Filmic</code>的幕后实现也是基于其他领域的成果（下面正文<!-- TODO link to the section-->我会介绍）。 所以如果你使用其他CG或者渲染软件，以及别的相关领域也建议了解下。 <a id="more"></a> 比如虚幻4 UE4游戏引擎在4.15版本的时候也有类似的新特性 <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>。</p>
 <h2 id="what-is-dynamic-range">What is Dynamic Range</h2>
 <p>首先从拍照来引入，相机（或手机）取景会显得过亮或者过暗，我们经常会选取图像的某一处作为“曝光点”， 然后镜头会以我们选择的“曝光点”作为 中间灰度值 <em>middle grey</em> 自动调节。</p>
@@ -126,7 +126,7 @@
 <p>超出 <code>dynamic range</code> 的部分被称为 <code>clipping</code> ，过暗以至于完全黑色的被称作 <code>black clipping</code> ， 相反的过亮完全变白的的被称作 <code>white clipping</code> 。</p>
 <div class="figure">
 <img src="" alt="Clipping 下图红色部分即 white clipping 部分(高光)， 另外图中黑色冲压（图中间的柱体）也有 black clipping 的部分 图片来源 wikipedia" class="b-lazy" data-src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Blown-out_highlights.jpg">
-<p class="caption"><strong><code>Clipping</code></strong> 下图红色部分即 <code>white clipping</code> 部分(高光)， 另外图中黑色冲压（图中间的柱体）也有 <code>black clipping</code> 的部分 图片来源 <a href="https://en.wikipedia.org/wiki/Clipping_(photography)" target="_blank" rel="external">wikipedia</a></p>
+<p class="caption"><strong><code>Clipping</code></strong> 下图红色部分即 <code>white clipping</code> 部分(高光)， 另外图中黑色冲压（图中间的柱体）也有 <code>black clipping</code> 的部分 图片来源 <a href="https://en.wikipedia.org/wiki/Clipping_(photography)" target="_blank" rel="noopener">wikipedia</a></p>
 </div>
 <p><code>clipping</code> 的部分是超出了感光器材的 <code>dynamic range</code> 产生，但并不是所有情况都是缺陷。有些情况下， 有些地方就因该是高光，比如光滑金属的反光的部分；或者完全的暗部，现实光照就是不足以照亮的角落 。但有时不能接受， 比如我的面包圈之前的效果，其中一处在偏左白色盘子存在 <code>white clipping</code> 问题， 以至无法看出盘子中间是凹的（对比右图）。</p>
 <p>笼统说 <code>dynamic range</code> 越宽，效果越好。衡量其范围的单位为 <code>f-stops</code>:</p>
@@ -161,7 +161,7 @@
 <p><strong>问题的根源</strong> 是blender使用了 <strong><code>sRGB</code></strong> color transform。<code>sRGB</code> 是设计来模拟 CRT显示器 的显示效果。 而这本意不是用来渲染的，永远不应该拿来渲染。</p>
 <h2 id="解决方式-filimic-blender">解决方式 Filimic Blender</h2>
 <p>我们只需要将原生的blender的<code>sRGB</code> 改为名为 <code>Filmic Blender</code> 的 <code>color management</code>。</p>
-<p><a href="https://sobotka.github.io/filmic-blender/" target="_blank" rel="external">Filmic Blender</a>是由 Troy Sobotka 编写一套 color management。类似于ACES<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> 。<code>Filmic Blender</code> 能够将 <code>8 f-stops</code> 提升至 <code>25 f-stops</code>。</p>
+<p><a href="https://sobotka.github.io/filmic-blender/" target="_blank" rel="noopener">Filmic Blender</a>是由 Troy Sobotka 编写一套 color management。类似于ACES<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> 。<code>Filmic Blender</code> 能够将 <code>8 f-stops</code> 提升至 <code>25 f-stops</code>。</p>
 <div class="figure">
 <img src="" alt="Filmic Blender的dynamic range爆表" class="b-lazy" data-src="/images/2017-BlenderFilmic/new-f-stops.png">
 <p class="caption">Filmic Blender的dynamic range爆表</p>
@@ -169,7 +169,7 @@
 <p>最重要的是Troy非常慷慨将 <code>Filmic Blender</code> 对community开源，并且完全免费。</p>
 <h3 id="安装-filmic-blender">安装 Filmic Blender</h3>
 <ol style="list-style-type: decimal">
-<li><a href="https://github.com/sobotka/filmic-blender" target="_blank" rel="external">Github项目页面</a>找到 <em>Clone or Download</em> 按钮， 点击后选择 <em>Download Zip</em> 下载zip压缩包。</li>
+<li><a href="https://github.com/sobotka/filmic-blender" target="_blank" rel="noopener">Github项目页面</a>找到 <em>Clone or Download</em> 按钮， 点击后选择 <em>Download Zip</em> 下载zip压缩包。</li>
 <li>解压到blender <strong>datafiles</strong> 目录下。
 <ul>
 <li>Windows用户，这个目录处于blender安装目录下，可能是 C:/Program Files/Blender Foundation/Blender/&lt;version&gt;/datafiles</li>
@@ -274,8 +274,8 @@
 <div class="footnotes">
 <hr>
 <ol>
-<li id="fn1"><p><a href="https://www.unrealengine.com/en-US/blog/unreal-engine-4-15-released?lang=en-US" target="_blank" rel="external">4.15发布日志</a> 新的基于<code>ACES</code>的<code>Filmic Tonemapping</code>特性以及对应的新的<code>Post Progress</code>后期处理的工具， 如果你用过以前版本，4.15的Post Progress有很大变化，而且相关工作流<code>workflow</code>有些不同，UE4团队有相关新特性的U2B视频教程 <a href="https://youtu.be/A-wectYNfRQ" target="_blank" rel="external">Filmic Tonemapper | Feature Highlight</a><a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>Academy Color Encoding System 是在电影以及电视领域用于管理色彩的工业标准。 此处 Academy 也是奥斯卡奖的那个学院。更多关于ACES介绍浏览 <a href="http://www.oscars.org/science-technology/sci-tech-projects/aces" class="uri" target="_blank" rel="external">http://www.oscars.org/science-technology/sci-tech-projects/aces</a><a href="#fnref2">↩</a></p></li>
+<li id="fn1"><p><a href="https://www.unrealengine.com/en-US/blog/unreal-engine-4-15-released?lang=en-US" target="_blank" rel="noopener">4.15发布日志</a> 新的基于<code>ACES</code>的<code>Filmic Tonemapping</code>特性以及对应的新的<code>Post Progress</code>后期处理的工具， 如果你用过以前版本，4.15的Post Progress有很大变化，而且相关工作流<code>workflow</code>有些不同，UE4团队有相关新特性的U2B视频教程 <a href="https://youtu.be/A-wectYNfRQ" target="_blank" rel="noopener">Filmic Tonemapper | Feature Highlight</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Academy Color Encoding System 是在电影以及电视领域用于管理色彩的工业标准。 此处 Academy 也是奥斯卡奖的那个学院。更多关于ACES介绍浏览 <a href="http://www.oscars.org/science-technology/sci-tech-projects/aces" class="uri" target="_blank" rel="noopener">http://www.oscars.org/science-technology/sci-tech-projects/aces</a><a href="#fnref2">↩</a></p></li>
 <li id="fn3"><p>Physically Based Rendering 基于物理现实的渲染<a href="#fnref3">↩</a></p></li>
 </ol>
 </div>

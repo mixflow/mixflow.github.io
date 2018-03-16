@@ -85,8 +85,8 @@
     2017-02-20
   </time>
   <span class="modified-label">最后修改于</span>
-  <time class="modified-time" datatime="2017-08-10T13:25:02.331Z" itemprop="dateModified">
-    2017-08-10
+  <time class="modified-time" datatime="2017-12-26T06:13:55.930Z" itemprop="dateModified">
+    2017-12-26
   </time>
 
 
@@ -113,7 +113,7 @@
 毕竟之前也接触过很多语言，基本都是学的语言特性<code>feature</code>，和其流行的package使用(比如web框架)。很少接触过语言实现<code>language implemention</code>的知识。</p>
 <p>当自己能写出解释器的时候，感觉到一种新的学习语言的体验。</p>
 <p>这篇文章努力做到新手友好，只需要有一定编程知识基础(可能只要懂一门语言)即可阅读。</p>
-<p>项目github链接：<a href="https://github.com/mixflow/RacketOnRuby/" class="uri" target="_blank" rel="external">https://github.com/mixflow/RacketOnRuby/</a> <a id="more"></a></p>
+<p>项目github链接：<a href="https://github.com/mixflow/RacketOnRuby/" class="uri" target="_blank" rel="noopener">https://github.com/mixflow/RacketOnRuby/</a> <a id="more"></a></p>
 <h2 id="语言相关介绍">语言相关介绍</h2>
 <p>Ruby现在还算有些名声，现在的程序员即使没用过的，可能都知道有这门语言。<br>
 但是Lisp Scheme可能很多程序员都没听说过， 我当年阅读了别人推荐的《黑客与画家》 这本书才有所了解，在此之前我似乎连Lisp或者Scheme的名字都没见过。 所以有必要先简介一下。</p>
@@ -152,12 +152,12 @@
 </ol>
 <div class="figure">
 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Parser_Flow%D5%B8.gif" alt="implementing program language workflow from wikipedia parsing">
-<p class="caption">implementing program language workflow from <a href="https://en.wikipedia.org/wiki/Parsing" target="_blank" rel="external">wikipedia parsing</a></p>
+<p class="caption">implementing program language workflow from <a href="https://en.wikipedia.org/wiki/Parsing" target="_blank" rel="noopener">wikipedia parsing</a></p>
 </div>
 <p>另外要说教下，编译器以及解释器只是<strong>编程语言实现方式的特征<em>the feature of a particular programming language implementation</em></strong>，而不是编程语言自身的特征<em>the feature of the programming language</em>。所以“编译性语言” <em>compile language</em> 或者“解释性语言” <em>interpreter language</em> 的说法<strong>完全没有意义</strong>。完全可以给Lisp,Scheme系语言编写一个compiler(这些语言的解释器实现比较常见)，给C语言编写一个解释器也是完全可行的。</p>
 <h2 id="racket基本语法以及parser实现">Racket基本语法以及parser实现</h2>
-<p>建议先在<a href="http://download.racket-lang.org/" target="_blank" rel="external">Racket官网下载</a>原生Racket以及配套IDE DrRacket，写Racket或者Scheme程序方便些。 另外本文interpreter实现基本不包含检测和错误处理，所以测试代码最好先在原生Racket里面执行下。</p>
-<p>需要快速了解Racket基本语法，推荐此篇快速介绍文章<a href="https://learnxinyminutes.com/docs/racket/" target="_blank" rel="external">Learn X in Y minutes, When x = Racket</a>。</p>
+<p>建议先在<a href="http://download.racket-lang.org/" target="_blank" rel="noopener">Racket官网下载</a>原生Racket以及配套IDE DrRacket，写Racket或者Scheme程序方便些。 另外本文interpreter实现基本不包含检测和错误处理，所以测试代码最好先在原生Racket里面执行下。</p>
+<p>需要快速了解Racket基本语法，推荐此篇快速介绍文章<a href="https://learnxinyminutes.com/docs/racket/" target="_blank" rel="noopener">Learn X in Y minutes, When x = Racket</a>。</p>
 <h3 id="代数运算">代数运算</h3>
 <figure class="highlight scheme"><figcaption><span>Racket</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="name"><span class="builtin-name">+</span></span> <span class="number">2</span> (<span class="name"><span class="builtin-name">*</span></span> <span class="number">2</span> <span class="number">3</span>))</div></pre></td></tr></table></figure>
 <p>先来个简单的Racket代码例子，上述代码较内层括号<code>(* 2 3)</code>是乘法运算，然后在外层括号内再将上述乘法运算结果加上2。 整个代码等价于数学或者常见编程语言<code>2 + 2 * 3</code>代码意义。</p>
@@ -170,7 +170,7 @@
 或者是<code>特别形式special form</code>诸如<code>define</code>、<code>lambda</code>、<code>if</code>。(涉及的名词或者术语，不理解没关系，再后文会一一介绍)</li>
 <li>或者是在括号的一序列<em>sequence</em>东西<code>(t1 t2 t3 ... tn)</code>。</li>
 </ol>
-<p>该定义还有个专门的名称<a href="https://en.wikipedia.org/wiki/S-expression" target="_blank" rel="external">S-expression</a>，随着Lisp诞生给出的定义用来描述Lisp。</p>
+<p>该定义还有个专门的名称<a href="https://en.wikipedia.org/wiki/S-expression" target="_blank" rel="noopener">S-expression</a>，随着Lisp诞生给出的定义用来描述Lisp。</p>
 <p>详说下第二种情况。括号里的第一东西t1，影响余下的序列中的东西。 如果是<code>special form</code>，比如<code>define</code>，以为定义一个东西，要么是变量<em>variable</em>，要么是函数<em>function</em>（<code>lambda</code>）。</p>
 <p>如果不是<code>special form</code>，剩余情况一般是函数执行<em>function call</em>，很多东西在Racket里都是函数，比如加减<code>+</code>和<code>-</code>。</p>
 <p>在Racket里括号是很常见的，而且括号作用非常明确。不会遇到<code>f x y</code>是<code>(f x) y</code>还是<code>f (x y)</code>的疑惑。 Racket的括号直接影响着<code>解析parsing</code>，将代码转换成树形结构。实际上Racket代码本身就是树形结构。</p>
@@ -393,10 +393,10 @@ Ruby<strong>不需要提前声明variable</strong>，赋值一个之前不存在
 <div class="footnotes">
 <hr>
 <ol>
-<li id="fn1"><p><a href="https://ruby-doc.org/core-2.4.0/String.html#method-i-split" target="_blank" rel="external">Ruby Doc: String.split</a>: If pattern is a String, then its contents are used as the delimiter when splitting str. If pattern is <strong>a single space</strong>, str is split on <strong>whitespace</strong>, with leading whitespace and runs of <strong>contiguous whitespace characters ignored</strong>.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p><a href="https://ruby-doc.org/core-2.4.0/Enumerable.html#method-i-each_cons" target="_blank" rel="external">Ruby Doc Enumerable each_cons(n)</a>: Iterates the given block for each array of consecutive <n> elements. If no block is given, returns an enumerator.<a href="#fnref2">↩</a></n></p></li>
-<li id="fn3"><p><em>Structure and Interpretation of Computer Programs</em> <a href="https://mitpress.mit.edu/sicp/full-text/book/book.html" target="_blank" rel="external">MIT scheme课程书籍</a>.<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p><em>The Scheme Programming Language</em> <a href="http://www.scheme.com/tspl4/" class="uri" target="_blank" rel="external">http://www.scheme.com/tspl4/</a>.<a href="#fnref4">↩</a></p></li>
+<li id="fn1"><p><a href="https://ruby-doc.org/core-2.4.0/String.html#method-i-split" target="_blank" rel="noopener">Ruby Doc: String.split</a>: If pattern is a String, then its contents are used as the delimiter when splitting str. If pattern is <strong>a single space</strong>, str is split on <strong>whitespace</strong>, with leading whitespace and runs of <strong>contiguous whitespace characters ignored</strong>.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a href="https://ruby-doc.org/core-2.4.0/Enumerable.html#method-i-each_cons" target="_blank" rel="noopener">Ruby Doc Enumerable each_cons(n)</a>: Iterates the given block for each array of consecutive <n> elements. If no block is given, returns an enumerator.<a href="#fnref2">↩</a></n></p></li>
+<li id="fn3"><p><em>Structure and Interpretation of Computer Programs</em> <a href="https://mitpress.mit.edu/sicp/full-text/book/book.html" target="_blank" rel="noopener">MIT scheme课程书籍</a>.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p><em>The Scheme Programming Language</em> <a href="http://www.scheme.com/tspl4/" class="uri" target="_blank" rel="noopener">http://www.scheme.com/tspl4/</a>.<a href="#fnref4">↩</a></p></li>
 </ol>
 </div>
 
@@ -422,7 +422,7 @@ Ruby<strong>不需要提前声明variable</strong>，赋值一个之前不存在
         <hr class="article-hr"/>
     
   <div class="article-tag">
-    <label class="article-tag-label" for="">标签: </label><ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eval/">eval</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interpreter/">interpreter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lambda/">lambda</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lisp/">lisp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/racket/">racket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scheme/">scheme</a></li></ul>
+    <label class="article-tag-label" for="">标签: </label><ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eval/">eval</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interpreter/">interpreter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lambda/">lambda</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lisp/">lisp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/racket/">racket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scheme/">scheme</a></li></ul>
   </div>
 
 
