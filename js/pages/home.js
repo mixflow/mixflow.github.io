@@ -10,12 +10,12 @@
     galleryImageInterval = void 0;
     text_info_setting = {
       0: {
-        title: 'Blender Cycles 室内 interior 高质量作品',
+        title: 'Blender Cycles 室内interior高质量作品',
         link: '/2018/05/29/blender-cycles-interior/',
         detail: '点击查看个人作品，<br/>照片级 3D 作品，基于现实设计，真实再现'
       },
       1: {
-        title: 'Unreal Engine 4 虚幻四作品 「林中小径」',
+        title: 'Unreal Engine4 虚幻四作品 「林中小径」',
         link: '/2017/08/22/UE4-work-forest-path-with-panorama/',
         detail: '点击查看个人作品，<br/>使用UE4构建光影斑驳的森林场景 <br/>包含全景画方式浏览，360° & 180°观看四周'
       },
@@ -101,12 +101,12 @@
       }
     };
     (function(mediaQuery) {
-      var gallery, galleryImageLoop, i, images, img, len, off_css, on_css;
+      var clientJumpTo, gallery, galleryJumpTo, i, imageGalleryControl, image_hide_sytle, image_show_sytle, images, img, len;
       if (!mediaQuery.matches) {
-        on_css = {
+        image_show_sytle = {
           opacity: 1
         };
-        off_css = {
+        image_hide_sytle = {
           opacity: 0
         };
         gallery = $(".gallery");
@@ -114,8 +114,8 @@
         if (!images.length) {
           images = [images];
         }
-        images.css(off_css);
-        images[0].css(on_css);
+        images.css(image_hide_sytle);
+        images[0].css(image_show_sytle);
         for (i = 0, len = images.length; i < len; i++) {
           img = images[i];
           if (!img.get().getAttribute("src")) {
@@ -124,21 +124,65 @@
             });
           }
         }
-        galleryImageLoop = (function() {
-          var current_idx;
-          current_idx = 0;
-          return function() {
-            images.css(off_css);
-            if (current_idx >= images.length) {
-              current_idx = 0;
+        galleryJumpTo = function(idx) {
+          var target_elem_id;
+          images = $("img.gallery-image", gallery);
+          if (idx >= images.length || idx < 0) {
+            idx = 0;
+          }
+          target_elem_id = "gallery-image-" + (idx + 1);
+          $('#gallery-image-' + (idx + 1), gallery).css(image_show_sytle);
+          images.forEach(function(img) {
+            if (target_elem_id === img.getAttribute("id")) {
+              return img.css(image_show_sytle);
+            } else {
+              return img.css(image_hide_sytle);
             }
-            $('#gallery-image-' + (current_idx + 1), gallery).css(on_css);
-            changeMiddleInfo(current_idx);
-            return current_idx += 1;
+          });
+          return changeMiddleInfo(idx);
+        };
+        imageGalleryControl = (function() {
+          var galleryImageLoop, next_id, resetGallery, stopGallery;
+          next_id = 0;
+          galleryImageLoop = function() {
+            if (next_id >= images.length) {
+              next_id = 0;
+            }
+            galleryJumpTo(next_id);
+            return next_id += 1;
+          };
+          galleryImageLoop();
+          galleryImageInterval = setInterval(galleryImageLoop, 7500);
+          stopGallery = function() {
+            if (galleryImageInterval) {
+              return clearInterval(galleryImageInterval);
+            }
+          };
+          resetGallery = function(now_idx) {
+            if (galleryImageInterval) {
+              stopGallery();
+            }
+            if (now_idx) {
+              next_id = now_idx + 1;
+            }
+            return galleryImageInterval = setInterval(galleryImageLoop, 7500);
+          };
+          return {
+            stopGallery: stopGallery,
+            resetGallery: resetGallery
           };
         })();
-        galleryImageLoop();
-        galleryImageInterval = setInterval(galleryImageLoop, 7500);
+        clientJumpTo = function(idx) {
+          galleryJumpTo(idx);
+          return imageGalleryControl.resetGallery(idx);
+        };
+        $(".gallery-jump-point", gallery).forEach(function(jumpPoint) {
+          var idx;
+          idx = parseInt(jumpPoint.getAttribute('data-idx'), 10);
+          return jumpPoint.on("click", function(event) {
+            return clientJumpTo(idx);
+          });
+        });
       }
     })(mediaQuery);
   });

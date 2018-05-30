@@ -321,6 +321,23 @@ body > .page-center > footer {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center; }
+  .gallery .gallery-jump-point-set {
+    position: absolute;
+    color: red;
+    bottom: 1em;
+    z-index: 3;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    transform: translate(-50%); }
+    .gallery .gallery-jump-point-set .gallery-jump-point {
+      display: inline-block;
+      font-size: 0.8rem;
+      border: 1px white solid;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 0.5em 1em;
+      cursor: pointer; }
 
 .gallery-middle-info-wrap {
   position: absolute;
@@ -349,11 +366,12 @@ body > .page-center > footer {
       border: 1px white solid;
       color: white;
       font-size: 1.2em;
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: rgba(0, 0, 0, 0.4);
       text-decoration: none;
       word-break: keep-all; }
     .gallery-middle-info-wrap .middle-info-content .text-info {
       margin-top: 0.4em;
+      text-shadow: #330a0a 0px 1px 3px;
       color: white;
       font-size: 0.9em;
       line-height: 1.8em; }
