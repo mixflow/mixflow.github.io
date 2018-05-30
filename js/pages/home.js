@@ -10,19 +10,19 @@
     galleryImageInterval = void 0;
     text_info_setting = {
       0: {
-        title: 'UE4 室内作品 「简易书房」',
-        link: '/2017/02/17/UE4-work-book-room',
-        detail: '点击查看个人作品，<br/>使用虚幻4引擎在虚拟中尝试构建现实'
+        title: 'Blender Cycles 室内 interior 高质量作品',
+        link: '/2018/05/29/blender-cycles-interior/',
+        detail: '点击查看个人作品，<br/>照片级 3D 作品，基于现实设计，真实再现'
       },
       1: {
-        title: 'Blender Cycles 渲染作品 「甜面包圈」',
-        link: '/2017/04/01/blender-cycles-render-donuts',
-        detail: '点击查看个人作品，<br/>使用Blender Cycles渲染如同照片真实的作品'
+        title: 'Unreal Engine 4 虚幻四作品 「林中小径」',
+        link: '/2017/08/22/UE4-work-forest-path-with-panorama/',
+        detail: '点击查看个人作品，<br/>使用UE4构建光影斑驳的森林场景 <br/>包含全景画方式浏览，360° & 180°观看四周'
       },
       2: {
         title: '神经网络算法转变 图画的艺术风格',
         link: '/2017/06/27/image-style-transfer-using-neural-style',
-        detail: '点击查看一系列作品，纯粹由算法生成的作品'
+        detail: '点击查看一系列作品，纯粹由卷积神经网络算法生成的作品'
       }
     };
     changeMiddleInfo = (function(key_indices_to_infos) {
