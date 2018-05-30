@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+  <meta charset="utf-8">
+  
+  
+
+  <title>MixFlow「混流」| A programmer and CG artist's personal website</title>
+  <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1">
+  <link rel="alternate" href="/atom.xml" title="MixFlow「混流」| A programmer and CG artist's personal website" type="application/atom+xml">
+  <link rel="icon" href="/favicon.png">
+
+  
+    <style>
+    /* google font for the code. */
+    @font-face {
+      font-family: 'Source Code Pro';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Source Code Pro'),
+           local('Source-Code-Pro-regular'),
+           url('/fonts/SourceCodePro-Regular.woff') format('woff'),
+           url('/fonts/SourceCodePro-Regular.ttf') format('truetype');
+      /*unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; */
+    }
+    </style>
+  <link rel="stylesheet" href="/css/main.css"><script src="/js/util/domutil.js"></script><script src="/js/util/blazy.min.js"></script><script src="/js/main.js"></script>
+
+  <script src="/js/util/three.min.js"></script><script src="/js/util/3panorama.min.js"></script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118576574-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-118576574-1');
+    </script>
+  
+
+</head>
+
+  <body><h1>MixFlow CG</h1>
+<header>
+  <a href="/">
+    <img class="logo" src="/images/text-logo-h.png" alt="logo image">
+  </a>
+  
+  <nav id="main-nav-menu">
+    <h1 class="hide">Site Navigator</h1>
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/work">作品</a></li>
+      
+      <li><a href="/blog">博客</a></li>
+      
+      <li class="only-small">
+        <a id="force-desktop" href="javascript:void('Force desktop resolution')">
+          大屏幕版「桌面版」
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="main-nav-switch" class="menu-icon-wrapper">
+    <div class="css-icon menu"></div>
+  </div>
+</header>
+
+    
+      <div class="page-center">
+    
+
+<article id="post-blender-cycles-interior"
+  class="article layout-post  "
+  itemscope itemtype="https://schema.org/BlogPosting">
+
+  <header class="article-header">
+  
+    <h1 class="article-title" itemprop="headline">
+      Blender Cycles 室内作品
+    </h1>
+  
+
+
+
+    <div class="article-meta" >
+<span class="article-author" itemprop="author">混流</span>
+
+
+  <span class="publish-label">发表于</span>
+  <time class="publish-time" datetime="2018-05-29T05:25:54.000Z" itemprop="datePublished">
+    2018-05-29
+  </time>
+  <span class="modified-label">最后修改于</span>
+  <time class="modified-time" datatime="2018-05-30T11:57:10.076Z" itemprop="dateModified">
+    2018-05-30
+  </time>
+
+
+      
+
+    </div>
+  </header>
+
+  
+
+  
+    
+    
+  
+
+  <section class="article-body" itemprop="articleBody">
+    <p>本人制作 3D 室内渲染作品，参考他人室内设计的<a href="https://www.behance.net/gallery/55050865/PartiDesign-CHT-Architect-CHEF-AND-CATS" target="_blank" rel="noopener">照片 PartiDesign &amp; CHT Architect|CHEF AND CATS</a>。 在Blender制作并还原。</p>
+<p>使用的 Blender 2.79 版本，Cycles 渲染器。直接看结果如下 参照照片 以及 渲染结果：</p>
+<div class="figure">
+<img src="/images/util/loading.gif" alt="参照室内设计的照片" class="b-lazy" data-src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/1a570d55050865.5974e1118c9f7.jpg">
+<p class="caption">参照室内设计的照片</p>
+</div>
+<div class="figure">
+<img src="/images/util/loading.gif" alt="我的作品渲染结果" class="b-lazy" data-src="/images/2018-interior/result-1.jpg">
+<p class="caption">我的作品渲染结果</p>
+</div>
+<p>接触 Blender 有段时间了，但是由于不是专门做 Blender CG，所以也没有多少作品可供展示。 最近想要 stress test 一下 CG 方面能力，自检下实力。</p>
+<a id="more"></a>
+<p>选择的是现实的室内场景，感觉比较合适，原因如下：</p>
+<ul>
+<li>本人非设计出身，自己自由发挥的话，不一定美观。所以参考专业建筑师设计的美观房间。</li>
+<li>因为不再是新人了，测试实力，需要有一定工作量，相较与之前做的 <a href="/2017/04/01/blender-cycles-render-donuts/" title="面包圈">面包圈</a>，不再是局部。</li>
+<li>工作量可控，不会过量，一方面 ray trace 3D render 太耗时，另一方面3D Artist也不是我主要目标。</li>
+</ul>
+<p>由于将来本人需要进行复杂的建模，所有建模都是从零亲自建模的，没有使用 props 素材。</p>
+<p>其中一个难点是<code>Sculpt</code>，如名即雕刻，之前没怎么接触过。用来做布料的褶皱之类的，想做逼真的沙发以及枕头，就需要用到。</p>
+<div class="figure">
+<img src="/images/util/loading.gif" alt="Couch" class="b-lazy" data-src="/images/2018-interior/result-2.jpg">
+<p class="caption">Couch</p>
+</div>
+<p>另外 Blender 2.79 内置 <code>filmic</code>，不过不是默认启用的，需要自己去color management里选。 关于 filmic 详细介绍我的另一篇文章 <a href="/2017/08/26/The-Secret-Ingredient-to-Photorealism/" title="照片级现实的秘密">照片级现实的秘密</a> 中有介绍。 只是新版本 Blender 不再需要额外装插件了。</p>
+<div class="figure">
+<img src="/images/util/loading.gif" alt="书架 懒人沙发" class="b-lazy" data-src="/images/2018-interior/result-3.jpg">
+<p class="caption">书架 懒人沙发</p>
+</div>
+<p>另外我实际参考了<a href="https://www.youtube.com/watch?v=EmqEP2-UvAY&amp;t=1209s" target="_blank" rel="noopener">u2b CG Geek 教程</a>， 参考的室内场景即教程中参考的，但不是step by step跟着做，而是为了看下专业人士的制作细节，以便改进。 下面就说下难点，以及我从 CG Geek 学到的技巧。</p>
+<ol style="list-style-type: decimal">
+<li>首当其冲的，就是把照片作为背景，并且还原相机的位置角度，然后开始建模，类似于临摹，这样你的房间物体比例不会失调。 CG Geek的做法是目测，我不推荐。首先这需要很多经验才能手动调准， 另外即使经验老道也会经常不准，实际上教程中后他也意识到有些物品位置冲突，当然误差不是大到严重影响。 我推荐使用 <code>BLAM 插件</code><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>，只要对着照片画平行于x y轴各两条线，自动帮你校准相机。</li>
+<li>善用 <code>pivot center</code> 以及 <code>proportional edit mode</code>。这两个在编辑物品 <code>位置 location</code>/<code>比例 scale</code>/<code>旋转 rotation</code> 非常有用，尤其一些复杂的操作，参考教程中做茶几桌腿，如何卷曲电视机和书封的部分</li>
+<li><code>edit mode</code>模式下，关联选择<code>link select</code>（快捷键<code>L</code>），在一个<code>object</code>有多个部件时非常有用，能让你单独选中部件。</li>
+<li>CG Geek有个习惯让我有了新的认识，就是一个物体的各个不同部件能在<code>edit mode</code>里面放到一起就放到一起， 可以用<code>split</code>分割部件（快捷键<code>Y</code>），可以结合上一条可以快捷准确选择部件。</li>
+<li>关于上一条，CG Geek有时一个<code>object</code>中放的东西过多，例如他做墙面的时候，4面墙都是放在一个<code>object</code>，如果你只是做 CG 3D 那无所谓。 如果你是建模将来准备用在游戏中，</li>
+<li>这一条我自己总结的，CG Geek也没养成这个好习惯：建模后，如果要 曲面细分<code>subdivision surface</code> 或者 多维解析<code>multiresolution</code>，在这之前一定要先 <code>Unwrap UV mapping</code>。 如果你提高了模型的精度并应用后，再<code>Unwrap UV mapping</code>你面对的是超多数量的面。 尤其还需要做了<code>sculpt</code>，例如枕头这种的，一个在最前面做<code>UV</code>。</li>
+</ol>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p>BLAM插件链接: https://github.com/stuffmatic/blam<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+    
+  </section>
+
+
+  <footer class="article-footer">
+
+    
+        <hr class="article-hr"/><div class="creative-commons">
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+        <img alt="知识共享许可协议" style="border-width:0"
+            src="/images/creative-commons/BY-NC-ND.png" />
+    </a>
+    
+    <br />本作品采用
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+        知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议
+    </a>进行许可。
+</div>
+
+        <hr class="article-hr"/>
+    
+  <div class="article-tag">
+    <label class="article-tag-label" for="">标签: </label><ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D/">3D</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CG/">CG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PBR/">PBR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blender/">blender</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cycles/">cycles</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/filmic/">filmic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/interior/">interior</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/render/">render</a></li></ul>
+  </div>
+
+
+    
+  <hr class="article-hr"/>
+  <nav id="article-nav">
+    
+    
+      <a class="article-nav-link next" href="/2017/08/26/The-Secret-Ingredient-to-Photorealism/">
+        <span class="article-nav-caption">后一篇: </span>
+        
+          照片级写实的秘诀 The Secret Ingredient to Photorealism
+        
+      </a>
+    
+  </nav>
+
+
+    
+  </footer>
+
+
+
+  <section id="comments">
+      <div id="disqus_thread"></div>
+      <script>
+
+          /**
+          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+          var disqus_config = function () {
+              this.page.url = "http://www.mix-flow.com/2018/05/29/blender-cycles-interior/";  // Replace PAGE_URL with your page's canonical URL variable
+              this.page.identifier = "post-blender-cycles-interior"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://mixflow.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+
+</article>
+
+
+    <footer>
+    <p>©2017 MixFlow</p>
+    <p>
+        Theme by MixFlow |
+        Power by <a href="https://hexo.io">Hexo</a>
+    </p>
+</footer>
+
+      </div>
+    
+  </body>
+</html>
