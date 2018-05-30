@@ -26,9 +26,10 @@
       }
     };
     changeMiddleInfo = (function(key_indices_to_infos) {
-      var info, info_dom, text_info, text_info_dom;
+      var info, info_dom, link, text_info, text_info_dom;
       info = $(".gallery-middle-info-wrap .info-wrap .info");
       text_info = $(".gallery-middle-info-wrap .text-info");
+      link = $(".gallery-middle-info-wrap .middle-info-content .gallery-info-link");
       info_dom = info.get();
       text_info_dom = text_info.get();
       return function(key) {
@@ -42,7 +43,7 @@
             info_dom.innerText = replace_info;
           }
           if (replace_link) {
-            info.setAttributes({
+            link.setAttributes({
               href: replace_link
             });
           }
