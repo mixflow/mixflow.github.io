@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.mix-flow.com/"/>
-  <updated>2021-10-25T13:53:34.762Z</updated>
+  <updated>2021-10-30T11:08:48.492Z</updated>
   <id>http://www.mix-flow.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://www.mix-flow.com/2021/10/10/blog-changes-and-thoughts-list/"/>
     <id>http://www.mix-flow.com/2021/10/10/blog-changes-and-thoughts-list/</id>
     <published>2021-10-10T10:45:57.000Z</published>
-    <updated>2021-10-25T13:53:34.762Z</updated>
+    <updated>2021-10-30T11:08:48.492Z</updated>
     
-    <content type="html"><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">  <meta http-equiv="Content-Style-Type" content="text/css">  <meta name="generator" content="pandoc">  <title></title>  <style type="text/css">code{white-space: pre;}</style></head><body><p>This personal site and blog is not often upgrade regularly. The frequency of the new article is almost one post every half year.</p><p>But actually I have a lot of ideas and want to write down every week, even every day. There have been 6 drafts which are different large topic but not published, and evch draft is almost finished but dropped.</p><p>Writing is hard, Even harder to Write a whole story at once. So I will try to write pieces of the stories, not just more easily to me, but also help to sort out the thoughts from a lot of chaotic content from a big topic. Then find a way to a larger picture, hopefully.</p><p>It's brain friendly, because those ideas are floating in the mind, no clear and forgettable, We write down to solidify, induct and understand. A lot of writers and artists use those methods, do a lot of experiments at first, maybe just do those for fun, then they can compose a larger worker based on those trial later.</p><p>So this article is abort the post topics which I prepare to write later. And The site changes which I would do. It's a roadmap and To-do list of my blog.</p><a id="more"></a><h1 id="my-interests-artcle-topics-and-themes">My interests, Artcle Topics and Themes</h1><p>While write this post, I scaned throught those unpublished drafts. Actually those cover my thought themes over years at some degree. Most drafts were dropped because I wasn't satisified with the result. It was almost always the situation when we rush to finish a large project at once.</p><div class="figure"><img src="/images/2021-blog-changes/draft-list.jpg" alt="List of unpublished drafts"><p class="caption">List of unpublished drafts</p></div><ul><li>Programming Developer<ul><li>Want to write a series of posts about the real problems and solutions during my recently full-time job.</li><li>Use Ruby(Rails on Ruby). Ruby is quite powerful language, which can be considered as a dialect of Lisp.</li><li>The language wouldn't be only limited with Ruby. It's totally OK when you prefer other language with similar features.</li></ul></li><li>Game Developer, 3D art, CG<ul><li>There would be a UE5 project post(draft) which would be published soon.</li><li>I can also work pieces and have fun in CG area. It fits.</li></ul></li><li>Investment<ul><li>May not work on this topic recently, because above two topics would come first</li><li>Actually I do investment quite well. Value investment but with exponential growing company</li><li>I will focus on the mistakes which I made, or I avoid. There is no guarantee win method. All I can do is to reduce the possibility of error <!-- * A much large topic of socity. not a sigalurity a topic which contains a large area, I'm not sure I can handle such one talk well. But at least I would write parts of my story.* I predicted a crsis happened later, I took action to prepare in 2016, which affect me dramticly during the time and later.* A cirsis like 2000 internet bubble, currently I forecast it and well-prepared* a larger cisrs Covid handle almost at same time. somehow hide some detail of the cirst, but worse the situtation.* even cover the real estas/house market* my advance for the future, my predicted for the future --></li></ul></li></ul><h1 id="the-site-itself-changes">The Site Itself Changes</h1><p>The entries start with <code>[]</code> would be targets recently.</p><h2 id="small-changes">Small changes</h2><ol style="list-style-type: decimal"><li>[] Remove <code>three.js</code> and the <code>panorama.js</code> lib based on it, replace with the <code>3paramore.js</code></li><li>[] Add <code>About</code> page with descriptions and contacts.</li></ol><h2 id="large-changes">Large changes</h2><ol style="list-style-type: decimal"><li>Framework: switch from <code>Hexo</code> to <code>Jeklly</code><ul><li><code>Jeklly</code> is written in Ruby, which would be more familiar to me<br></li></ul></li><li><ul><li>[] Home page not just gallery, also with article list</li><li>Put articles/posts under the gallery.</li></ul></li><li>Gallery remove <code>React</code>, there is no need to use and load <code>React</code> lib.<ul><li>Rewrite the gallery with minimum preview images below.</li><li>may remove auto-scroll feature.</li></ul></li><li>Comment system<ul><li>build by myself rails project, comments with a tiny user (just email identity, no login)<ul><li>Could play with <code>Hotwire</code>(turbo)</li></ul></li></ul></li><li>English and Chinese, duel language support.<ul><li>UI parts</li><li>Content, articles</li></ul></li></ol><h1 id="language-support-english-chinese">Language Support: English, Chinese</h1><p>Start with this post, I would practice and write in English.</p><p>The topic which can be read without technician background, I would also provide the Chinese version as possible as I can. Like CG works.</p><p>The tech article and programming article. I wouldn't provide Chinese mostly.</p></body></html>]]></content>
+    <content type="html"><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">  <meta http-equiv="Content-Style-Type" content="text/css">  <meta name="generator" content="pandoc">  <title></title>  <style type="text/css">code{white-space: pre;}</style></head><body><p>This personal site and blog is not often upgrade regularly. The frequency of the new article is almost one post every half year.</p><p>But actually I have a lot of ideas and want to write down every week, even every day. There have been 6 drafts which are different large topic but not published, and evch draft is almost finished but dropped.</p><p>Writing is hard, Even harder to Write a whole story at once. So I will try to write pieces of the stories, not just more easily to me, but also help to sort out the thoughts from a lot of chaotic content from a big topic. Then find a way to a larger picture, hopefully.</p><p>It's brain friendly, because those ideas are floating in the mind, no clear and forgettable, We write down to solidify, induct and understand. A lot of writers and artists use those methods, do a lot of experiments at first, maybe just do those for fun, then they can compose a larger worker based on those trial later.</p><p>So this article is abort the post topics which I prepare to write later. And The site changes which I would do. It's a roadmap and To-do list of my blog.</p><a id="more"></a><h1 id="my-interests-artcle-topics-and-themes">My interests, Artcle Topics and Themes</h1><p>While write this post, I scaned throught those unpublished drafts. Actually those cover my thought themes over years at some degree. Most drafts were dropped because I wasn't satisified with the result. It was almost always the situation when we rush to finish a large project at once.</p><div class="figure"><img src="/images/2021-blog-changes/draft-list.jpg" alt="List of unpublished drafts"><p class="caption">List of unpublished drafts</p></div><ul><li>Programming Developer<ul><li>Want to write a series of posts about the real problems and solutions during my recently full-time job.</li><li>Use Ruby(Rails on Ruby). Ruby is quite powerful language, which can be considered as a dialect of Lisp.</li><li>The language wouldn't be only limited with Ruby. It's totally OK when you prefer other language with similar features.</li></ul></li><li>Game Developer, 3D art, CG<ul><li>There would be a UE5 project post(draft) which would be published soon.</li><li>I can also work pieces and have fun in CG area. It fits.</li></ul></li><li>Investment<ul><li>May not work on this topic recently, because above two topics would come first</li><li>Actually I do investment quite well. Value investment but with exponential growing company</li><li>I will focus on the mistakes which I made, or I avoid. There is no guarantee win method. All I can do is to reduce the possibility of error <!-- * A much large topic of socity. not a sigalurity a topic which contains a large area, I'm not sure I can handle such one talk well. But at least I would write parts of my story.* I predicted a crsis happened later, I took action to prepare in 2016, which affect me dramticly during the time and later.* A cirsis like 2000 internet bubble, currently I forecast it and well-prepared* a larger cisrs Covid handle almost at same time. somehow hide some detail of the cirst, but worse the situtation.* even cover the real estas/house market* my advance for the future, my predicted for the future --></li></ul></li></ul><h1 id="the-site-itself-changes">The Site Itself Changes</h1><p>The entries start with <code>[]</code> would be targets recently.</p><h2 id="small-changes">Small changes</h2><ol style="list-style-type: decimal"><li>[] Remove <code>three.js</code> and the <code>panorama.js</code> lib based on it, replace with the <code>3paramore.js</code><ul><li>(2021-10-30 Updated) Easier way to embed the <code>paramore.js</code> parts instead hard code inside post <code>markdown</code> file now.<ul><li>Encapsulate those as a lib</li></ul></li></ul></li><li>[] Add <code>About</code> page with descriptions and contacts.</li><li>(2021-10-30 Updated) Links to my other media: GitHub, Twitter, etc.</li></ol><h2 id="large-changes">Large changes</h2><ol style="list-style-type: decimal"><li>Framework: switch from <code>Hexo</code> to <code>Jeklly</code><ul><li><code>Jeklly</code> is written in Ruby, which would be more familiar to me</li><li>(2021-10-30 Updated) Works page and post requirements:<ul><li>Keep each work post thumbnail and title, vertical image on large screen.</li></ul></li></ul></li><li><ul><li>[] Home page not just gallery, also with article list</li><li>Put articles/posts under the gallery.</li><li>(2021-10-30 Updated) Gallery images configurations instead hard code in JS/HTML<ul><li>May write custom <code>Jeklly</code> plugin, hack in ruby</li></ul></li></ul></li><li>Gallery remove <code>React</code>, there is no need to use and load <code>React</code> lib.<ul><li>Rewrite the gallery with minimum preview images below.</li><li>may remove auto-scroll feature.</li></ul></li><li>Comment system<ul><li>build by myself rails project, comments with a tiny user (just email identity, no login)<ul><li>Could play with <code>Hotwire</code>(turbo)</li></ul></li></ul></li><li>English and Chinese, dual language support.<ul><li>UI parts</li><li>Content, articles</li></ul></li><li>(2021-10-30 Updated) Search, full-text search.<ul><li>Search result page, show all content of the posts.<ul><li>It's useful when glance or research specify topic by using the keyword.</li><li>May some tag topic or series of post can work same with search, or vice versa?</li></ul></li><li>Use 3rd search engine or pre-generated?</li></ul></li></ol><h1 id="language-support-english-chinese">Language Support: English, Chinese</h1><p>Start with this post, I would practice and write in English.</p><p>The topic which can be read without tech background, I would also provide the Chinese version as possible as I can. For examples CG works.</p><p>The tech article and programming article. Save my time, I wouldn't provide Chinese mostly.</p></body></html>]]></content>
     
     <summary type="html">
     
@@ -169,15 +169,15 @@
       <category term="cycles" scheme="http://www.mix-flow.com/categories/my-work/blender/cycles/"/>
     
     
-      <category term="CG" scheme="http://www.mix-flow.com/tags/CG/"/>
-    
-      <category term="PBR" scheme="http://www.mix-flow.com/tags/PBR/"/>
+      <category term="interior" scheme="http://www.mix-flow.com/tags/interior/"/>
     
       <category term="blender" scheme="http://www.mix-flow.com/tags/blender/"/>
     
-      <category term="interior" scheme="http://www.mix-flow.com/tags/interior/"/>
+      <category term="PBR" scheme="http://www.mix-flow.com/tags/PBR/"/>
     
       <category term="3D" scheme="http://www.mix-flow.com/tags/3D/"/>
+    
+      <category term="CG" scheme="http://www.mix-flow.com/tags/CG/"/>
     
       <category term="cycles" scheme="http://www.mix-flow.com/tags/cycles/"/>
     
@@ -221,13 +221,13 @@
     </summary>
     
     
-      <category term="CG" scheme="http://www.mix-flow.com/tags/CG/"/>
+      <category term="blender" scheme="http://www.mix-flow.com/tags/blender/"/>
     
       <category term="PBR" scheme="http://www.mix-flow.com/tags/PBR/"/>
     
-      <category term="ACES" scheme="http://www.mix-flow.com/tags/ACES/"/>
+      <category term="CG" scheme="http://www.mix-flow.com/tags/CG/"/>
     
-      <category term="blender" scheme="http://www.mix-flow.com/tags/blender/"/>
+      <category term="ACES" scheme="http://www.mix-flow.com/tags/ACES/"/>
     
   </entry>
   
@@ -306,15 +306,15 @@
       <category term="ue4" scheme="http://www.mix-flow.com/categories/my-work/ue4/"/>
     
     
-      <category term="CG" scheme="http://www.mix-flow.com/tags/CG/"/>
-    
-      <category term="PBR" scheme="http://www.mix-flow.com/tags/PBR/"/>
-    
       <category term="UE4" scheme="http://www.mix-flow.com/tags/UE4/"/>
     
       <category term="unreal engine" scheme="http://www.mix-flow.com/tags/unreal-engine/"/>
     
+      <category term="PBR" scheme="http://www.mix-flow.com/tags/PBR/"/>
+    
       <category term="3D" scheme="http://www.mix-flow.com/tags/3D/"/>
+    
+      <category term="CG" scheme="http://www.mix-flow.com/tags/CG/"/>
     
       <category term="forest" scheme="http://www.mix-flow.com/tags/forest/"/>
     
@@ -424,13 +424,13 @@
       <category term="cycles" scheme="http://www.mix-flow.com/categories/my-work/blender/cycles/"/>
     
     
-      <category term="CG" scheme="http://www.mix-flow.com/tags/CG/"/>
+      <category term="blender" scheme="http://www.mix-flow.com/tags/blender/"/>
     
       <category term="PBR" scheme="http://www.mix-flow.com/tags/PBR/"/>
     
-      <category term="blender" scheme="http://www.mix-flow.com/tags/blender/"/>
-    
       <category term="3D" scheme="http://www.mix-flow.com/tags/3D/"/>
+    
+      <category term="CG" scheme="http://www.mix-flow.com/tags/CG/"/>
     
       <category term="cycles" scheme="http://www.mix-flow.com/tags/cycles/"/>
     
@@ -527,12 +527,6 @@
       <category term="ue4" scheme="http://www.mix-flow.com/categories/my-work/ue4/"/>
     
     
-      <category term="CG" scheme="http://www.mix-flow.com/tags/CG/"/>
-    
-      <category term="PBR" scheme="http://www.mix-flow.com/tags/PBR/"/>
-    
-      <category term="blender" scheme="http://www.mix-flow.com/tags/blender/"/>
-    
       <category term="UE4" scheme="http://www.mix-flow.com/tags/UE4/"/>
     
       <category term="unreal engine" scheme="http://www.mix-flow.com/tags/unreal-engine/"/>
@@ -541,7 +535,13 @@
     
       <category term="interior" scheme="http://www.mix-flow.com/tags/interior/"/>
     
+      <category term="blender" scheme="http://www.mix-flow.com/tags/blender/"/>
+    
+      <category term="PBR" scheme="http://www.mix-flow.com/tags/PBR/"/>
+    
       <category term="3D" scheme="http://www.mix-flow.com/tags/3D/"/>
+    
+      <category term="CG" scheme="http://www.mix-flow.com/tags/CG/"/>
     
   </entry>
   

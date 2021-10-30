@@ -98,8 +98,8 @@
     2021-10-10
   </time>
   <span class="modified-label">最后修改于</span>
-  <time class="modified-time" datatime="2021-10-25T13:53:34.762Z" itemprop="dateModified">
-    2021-10-25
+  <time class="modified-time" datatime="2021-10-30T11:08:48.492Z" itemprop="dateModified">
+    2021-10-30
   </time>
 
 
@@ -170,19 +170,33 @@
 <p>The entries start with <code>[]</code> would be targets recently.</p>
 <h2 id="small-changes">Small changes</h2>
 <ol style="list-style-type: decimal">
-<li>[] Remove <code>three.js</code> and the <code>panorama.js</code> lib based on it, replace with the <code>3paramore.js</code></li>
+<li>[] Remove <code>three.js</code> and the <code>panorama.js</code> lib based on it, replace with the <code>3paramore.js</code>
+<ul>
+<li>(2021-10-30 Updated) Easier way to embed the <code>paramore.js</code> parts instead hard code inside post <code>markdown</code> file now.
+<ul>
+<li>Encapsulate those as a lib</li>
+</ul></li>
+</ul></li>
 <li>[] Add <code>About</code> page with descriptions and contacts.</li>
+<li>(2021-10-30 Updated) Links to my other media: GitHub, Twitter, etc.</li>
 </ol>
 <h2 id="large-changes">Large changes</h2>
 <ol style="list-style-type: decimal">
 <li>Framework: switch from <code>Hexo</code> to <code>Jeklly</code>
 <ul>
-<li><code>Jeklly</code> is written in Ruby, which would be more familiar to me<br>
-</li>
+<li><code>Jeklly</code> is written in Ruby, which would be more familiar to me</li>
+<li>(2021-10-30 Updated) Works page and post requirements:
+<ul>
+<li>Keep each work post thumbnail and title, vertical image on large screen.</li>
+</ul></li>
 </ul></li>
 <li><ul>
 <li>[] Home page not just gallery, also with article list</li>
 <li>Put articles/posts under the gallery.</li>
+<li>(2021-10-30 Updated) Gallery images configurations instead hard code in JS/HTML
+<ul>
+<li>May write custom <code>Jeklly</code> plugin, hack in ruby</li>
+</ul></li>
 </ul></li>
 <li>Gallery remove <code>React</code>, there is no need to use and load <code>React</code> lib.
 <ul>
@@ -196,16 +210,25 @@
 <li>Could play with <code>Hotwire</code>(turbo)</li>
 </ul></li>
 </ul></li>
-<li>English and Chinese, duel language support.
+<li>English and Chinese, dual language support.
 <ul>
 <li>UI parts</li>
 <li>Content, articles</li>
 </ul></li>
+<li>(2021-10-30 Updated) Search, full-text search.
+<ul>
+<li>Search result page, show all content of the posts.
+<ul>
+<li>It's useful when glance or research specify topic by using the keyword.</li>
+<li>May some tag topic or series of post can work same with search, or vice versa?</li>
+</ul></li>
+<li>Use 3rd search engine or pre-generated?</li>
+</ul></li>
 </ol>
 <h1 id="language-support-english-chinese">Language Support: English, Chinese</h1>
 <p>Start with this post, I would practice and write in English.</p>
-<p>The topic which can be read without technician background, I would also provide the Chinese version as possible as I can. Like CG works.</p>
-<p>The tech article and programming article. I wouldn't provide Chinese mostly.</p>
+<p>The topic which can be read without tech background, I would also provide the Chinese version as possible as I can. For examples CG works.</p>
+<p>The tech article and programming article. Save my time, I wouldn't provide Chinese mostly.</p>
 </body>
 </html>
 
