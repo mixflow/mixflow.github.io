@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.mix-flow.com/"/>
-  <updated>2021-10-30T11:08:48.492Z</updated>
+  <updated>2021-11-18T13:27:18.900Z</updated>
   <id>http://www.mix-flow.com/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UE5 Lumen Realtime GI Project - Room in the Desert</title>
+    <link href="http://www.mix-flow.com/2021/11/18/UE5-Lumen-Realtime-GI-Project-Room-in-the-desert/"/>
+    <id>http://www.mix-flow.com/2021/11/18/UE5-Lumen-Realtime-GI-Project-Room-in-the-desert/</id>
+    <published>2021-11-18T11:45:26.000Z</published>
+    <updated>2021-11-18T13:27:18.900Z</updated>
+    
+    <content type="html"><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">  <meta http-equiv="Content-Style-Type" content="text/css">  <meta name="generator" content="pandoc">  <title></title>  <style type="text/css">code{white-space: pre;}</style></head><body><p>It's <code>Unreal Engine 5</code> project, which I try the new features, and It would be a some kind of whole project that can be shown.</p><p>In the new coming UE5, the most exciting feature could be <code>Lumen</code>, which is the new light system that provides the real-time globe illumination even without ray tracing hardware(GPU). In other words, graphic/video quality is close to real life, and could apply to video game in real-time.</p><h1 id="wip-showcase">[WIP] Showcase</h1><p>I'm working the project right now. More images come later.</p><h1 id="progress">Progress</h1><p>During this UE5 project and the blog, I would record the main steps of my work progress.</p><h2 id="quick-lighting-test">1. Quick Lighting Test</h2><p><embed src="/images/2021-ue5-lumen/quick-lighting-interior.webm"> <embed src="/images/2021-ue5-lumen/quick-lighting-exterior.webm"></p><p>The scene is amazing at the time of twilight! Although there are some glitches which I will tweak later.</p><p>I build a small area of desert before which is used to check exterior lighting, And reuse a part of room model which is created in blender before to check interior light.</p><p>Those aren't finished objects, just give me a glimpse of light condition, a quick overview.</p></body></html>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http
+      
+    
+    </summary>
+    
+    
+      <category term="PBR" scheme="http://www.mix-flow.com/tags/PBR/"/>
+    
+      <category term="UE5" scheme="http://www.mix-flow.com/tags/UE5/"/>
+    
+      <category term="unreal engine 5" scheme="http://www.mix-flow.com/tags/unreal-engine-5/"/>
+    
+      <category term="lumen" scheme="http://www.mix-flow.com/tags/lumen/"/>
+    
+      <category term="GI" scheme="http://www.mix-flow.com/tags/GI/"/>
+    
+      <category term="real-time" scheme="http://www.mix-flow.com/tags/real-time/"/>
+    
+  </entry>
   
   <entry>
     <title>Blog Changes and Thoughts List</title>
@@ -485,63 +519,6 @@
       <category term="lisp" scheme="http://www.mix-flow.com/tags/lisp/"/>
     
       <category term="eval" scheme="http://www.mix-flow.com/tags/eval/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UE4作品 简易书房</title>
-    <link href="http://www.mix-flow.com/2017/02/17/UE4-work-book-room/"/>
-    <id>http://www.mix-flow.com/2017/02/17/UE4-work-book-room/</id>
-    <published>2017-02-17T09:53:21.000Z</published>
-    <updated>2017-02-18T10:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">  <meta http-equiv="Content-Style-Type" content="text/css">  <meta name="generator" content="pandoc">  <title></title>  <style type="text/css">code{white-space: pre;}</style></head><body><ul><li>制作软件: Unreal Engine 4</li><li>建模软件: Blender</li></ul><p>这个是我初期学习UE4，并尝试做的作品（2016初），是第一个有可以看的东西的UE4作品。<br>在之前的学习UE4做的东西并不是画面为主，不太适合展示，比如游戏AI。</p><div class="figure"><img src="/images/2016-BookRoom/1.jpg" alt="概览 前厅"><p class="caption">概览 前厅</p></div><a id="more"></a><div class="figure"><img src="/images/2016-BookRoom/2.jpg" alt="前厅 沙发椅"><p class="caption">前厅 沙发椅</p></div><div class="figure"><img src="/images/2016-BookRoom/3.jpg" alt="侧面概览"><p class="caption">侧面概览</p></div><div class="figure"><img src="/images/2016-BookRoom/4.jpg" alt="桌子"><p class="caption">桌子</p></div><div class="figure"><img src="/images/2016-BookRoom/5.jpg" alt="两联窗户"><p class="caption">两联窗户</p></div><div class="figure"><img src="/images/2016-BookRoom/6.jpg" alt="书架&amp;画板"><p class="caption">书架&amp;画板</p></div><div class="figure"><img src="/images/2016-BookRoom/7.jpg" alt="从书房的概览"><p class="caption">从书房的概览</p></div><div class="figure"><img src="/images/2016-BookRoom/8.jpg" alt="楼梯"><p class="caption">楼梯</p></div></body></html>]]></content>
-    
-    <summary type="html">
-    
-      &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-&lt;head&gt;
-  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
-  &lt;meta http-equiv=&quot;Content-Style-Type&quot; content=&quot;text/css&quot;&gt;
-  &lt;meta name=&quot;generator&quot; content=&quot;pandoc&quot;&gt;
-  &lt;title&gt;&lt;/title&gt;
-  &lt;style type=&quot;text/css&quot;&gt;code{white-space: pre;}&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;ul&gt;
-&lt;li&gt;制作软件: Unreal Engine 4&lt;/li&gt;
-&lt;li&gt;建模软件: Blender&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;这个是我初期学习UE4，并尝试做的作品（2016初），是第一个有可以看的东西的UE4作品。&lt;br&gt;
-在之前的学习UE4做的东西并不是画面为主，不太适合展示，比如游戏AI。&lt;/p&gt;
-&lt;div class=&quot;figure&quot;&gt;
-&lt;img src=&quot;/images/2016-BookRoom/1.jpg&quot; alt=&quot;概览 前厅&quot;&gt;
-&lt;p class=&quot;caption&quot;&gt;概览 前厅&lt;/p&gt;
-&lt;/div&gt;
-    
-    </summary>
-    
-      <category term="my work" scheme="http://www.mix-flow.com/categories/my-work/"/>
-    
-      <category term="ue4" scheme="http://www.mix-flow.com/categories/my-work/ue4/"/>
-    
-    
-      <category term="UE4" scheme="http://www.mix-flow.com/tags/UE4/"/>
-    
-      <category term="unreal engine" scheme="http://www.mix-flow.com/tags/unreal-engine/"/>
-    
-      <category term="work" scheme="http://www.mix-flow.com/tags/work/"/>
-    
-      <category term="interior" scheme="http://www.mix-flow.com/tags/interior/"/>
-    
-      <category term="blender" scheme="http://www.mix-flow.com/tags/blender/"/>
-    
-      <category term="PBR" scheme="http://www.mix-flow.com/tags/PBR/"/>
-    
-      <category term="3D" scheme="http://www.mix-flow.com/tags/3D/"/>
-    
-      <category term="CG" scheme="http://www.mix-flow.com/tags/CG/"/>
     
   </entry>
   

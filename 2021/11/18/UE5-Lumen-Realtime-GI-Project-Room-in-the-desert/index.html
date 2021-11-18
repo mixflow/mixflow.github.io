@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  
+  <head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+
+  <title>MixFlow「混流」| A programmer and CG artist's personal website</title>
+  <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1">
+  <link rel="alternate" href="/atom.xml" title="MixFlow「混流」| A programmer and CG artist's personal website" type="application/atom+xml">
+  <link rel="icon" href="/favicon.png">
+
+  
+    <style>
+    /* google font for the code. */
+    @font-face {
+      font-family: 'Source Code Pro';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Source Code Pro'),
+           local('Source-Code-Pro-regular'),
+           url('/fonts/SourceCodePro-Regular.woff') format('woff'),
+           url('/fonts/SourceCodePro-Regular.ttf') format('truetype');
+      /*unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; */
+    }
+    </style>
+  <link rel="stylesheet" href="/css/main.css"><script src="/js/util/domutil.js"></script><script src="/js/util/blazy.min.js"></script><script src="/js/main.js"></script>
+
+  <script src="/js/util/three.min.js"></script><script src="/js/util/3panorama.min.js"></script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118576574-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-118576574-1');
+    </script>
+  
+
+</head>
+
+  <body><h1>MixFlow CG</h1>
+<header>
+  <a href="/">
+    <img class="logo" src="/images/text-logo-h.png" alt="logo image">
+  </a>
+  
+  <nav id="main-nav-menu">
+    <h1 class="hide">Site Navigator</h1>
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/work">作品</a></li>
+      
+      <li><a href="/blog">博客</a></li>
+      
+      <li class="only-small">
+        <a id="force-desktop" href="javascript:void('Force desktop resolution')">
+          大屏幕版「桌面版」
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="main-nav-switch" class="menu-icon-wrapper">
+    <div class="css-icon menu"></div>
+  </div>
+</header>
+
+    
+      <div class="page-center">
+    
+
+<article id="post-UE5-Lumen-Realtime-GI-Project-Room-in-the-desert"
+  class="article layout-post  "
+  itemscope itemtype="https://schema.org/BlogPosting">
+
+  <header class="article-header">
+  
+    <h1 class="article-title" itemprop="headline">
+      UE5 Lumen Realtime GI Project - Room in the Desert
+    </h1>
+  
+
+
+
+    <div class="article-meta" >
+<span class="article-author" itemprop="author">混流</span>
+
+
+  <span class="publish-label">发表于</span>
+  <time class="publish-time" datetime="2021-11-18T11:45:26.000Z" itemprop="datePublished">
+    2021-11-18
+  </time>
+  <span class="modified-label">最后修改于</span>
+  <time class="modified-time" datatime="2021-11-18T13:27:18.900Z" itemprop="dateModified">
+    2021-11-18
+  </time>
+
+
+      
+
+    </div>
+  </header>
+
+  
+
+  
+    
+      
+        <details class="article-table-of-contents" >
+            <summary>目录</summary>
+            <ol class="article-contents"><li class="article-contents-item article-contents-level-1"><a class="article-contents-link" href="#wip-showcase"><span class="article-contents-number">1.</span> <span class="article-contents-text">[WIP] Showcase</span></a></li><li class="article-contents-item article-contents-level-1"><a class="article-contents-link" href="#progress"><span class="article-contents-number">2.</span> <span class="article-contents-text">Progress</span></a><ol class="article-contents-child"><li class="article-contents-item article-contents-level-2"><a class="article-contents-link" href="#quick-lighting-test"><span class="article-contents-number">2.1.</span> <span class="article-contents-text">1. Quick Lighting Test</span></a></li></ol></li></ol></details>
+    
+  
+
+  <section class="article-body" itemprop="articleBody">
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<p>It's <code>Unreal Engine 5</code> project, which I try the new features, and It would be a some kind of whole project that can be shown.</p>
+<p>In the new coming UE5, the most exciting feature could be <code>Lumen</code>, which is the new light system that provides the real-time globe illumination even without ray tracing hardware(GPU). In other words, graphic/video quality is close to real life, and could apply to video game in real-time.</p>
+<h1 id="wip-showcase">[WIP] Showcase</h1>
+<p>I'm working the project right now. More images come later.</p>
+<h1 id="progress">Progress</h1>
+<p>During this UE5 project and the blog, I would record the main steps of my work progress.</p>
+<h2 id="quick-lighting-test">1. Quick Lighting Test</h2>
+<p><embed src="/images/2021-ue5-lumen/quick-lighting-interior.webm"> <embed src="/images/2021-ue5-lumen/quick-lighting-exterior.webm"></p>
+<p>The scene is amazing at the time of twilight! Although there are some glitches which I will tweak later.</p>
+<p>I build a small area of desert before which is used to check exterior lighting, And reuse a part of room model which is created in blender before to check interior light.</p>
+<p>Those aren't finished objects, just give me a glimpse of light condition, a quick overview.</p>
+</body>
+</html>
+
+    
+  </section>
+
+
+  <footer class="article-footer">
+
+    
+  <div class="article-tag">
+    <label class="article-tag-label" for>标签: </label><ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GI/">GI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PBR/">PBR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UE5/">UE5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lumen/">lumen</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/real-time/">real-time</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unreal-engine-5/">unreal engine 5</a></li></ul>
+  </div>
+
+
+    
+  <hr class="article-hr">
+  <nav id="article-nav">
+    
+    
+      <a class="article-nav-link next" href="/2021/10/10/blog-changes-and-thoughts-list/">
+        <span class="article-nav-caption">后一篇: </span>
+        
+          Blog Changes and Thoughts List
+        
+      </a>
+    
+  </nav>
+
+
+    
+  </footer>
+
+
+
+  <section id="comments">
+      <div id="disqus_thread"></div>
+      <script>
+
+          /**
+          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+          var disqus_config = function () {
+              this.page.url = "http://www.mix-flow.com/2021/11/18/UE5-Lumen-Realtime-GI-Project-Room-in-the-desert/";  // Replace PAGE_URL with your page's canonical URL variable
+              this.page.identifier = "post-UE5-Lumen-Realtime-GI-Project-Room-in-the-desert"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://mixflow.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+
+</article>
+
+
+    <footer>
+    <p>©2017 MixFlow</p>
+    <p>
+        Theme by MixFlow |
+        Power by <a href="https://hexo.io">Hexo</a>
+    </p>
+</footer>
+
+      </div>
+    
+  </body>
+</html>
